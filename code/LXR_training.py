@@ -21,26 +21,26 @@ import wandb
 import importlib
 
 
-#Begin add -----------------------------------------------------------------------------------------
 import os,argparse
 parser = argparse.ArgumentParser(description="List files in a directory that start with a given keyword.")
 # Add the arguments
 parser.add_argument('--directory', type=str, default="VAE_ML1M_0.0007_128_10.pt", nargs='?')
 parser.add_argument('--model', type=str, default="VAE", nargs='?')
+parser.add_argument('--data', type=str, default="ML1M", nargs='?')
 parser.add_argument('--lambda_pos', type=float, default=35, nargs='?')
 parser.add_argument('--lambda_neg', type=float, default=7, nargs='?')
 parser.add_argument('--alpha', type=int, default=1, nargs='?')
 parser.add_argument('--learning_rate', type=float, default=0.004, nargs='?')
 parser.add_argument('--trial', type=int, default=0 , nargs='?')
-parser.add_argument('--whereSaved', type=str, default='', nargs='?')
+parser.add_argument('--whereToSave', type=str, default='', nargs='?')
 # Parse the arguments
 args = parser.parse_args()
 recommender_name = args.model
-# End add -----------------------------------------------------------------------------------------
+data_name = args.data
 
 
-data_name = "ML1M" ### Can be ML1M, Yahoo, Pinterest
-recommender_name = "VAE" ## Can be MLP, VAE
+# data_name = "ML1M" ### Can be ML1M, Yahoo, Pinterest
+# recommender_name = "VAE" ## Can be MLP, VAE
 print(f'------ Runnig {recommender_name} on {data_name} -----------')
 DP_DIR = Path("processed_data", data_name) 
 export_dir = Path(os.getcwd())
@@ -69,7 +69,7 @@ num_items_dict = {
 
 
 recommender_path_dict = {
-    ("ML1M","VAE"): Path(Neucheckpoints_path, f"Sel1/{args.directory}" ),
+    ("ML1M","VAE"): Path(Neucheckpoints_path, f"{args.directory}" ),
     ("ML1M","MLP"):Path(checkpoints_path, "MLP1_ML1M_0.0076_256_7.pt"),
     
     ("Yahoo","VAE"): Path(checkpoints_path, "VAE_Yahoo_0.0001_128_13.pt"),
@@ -327,8 +327,8 @@ def lxr_training(trial):
 
     # batch_size = trial.suggest_categorical('batch_size', [32,64,128,256])
     # explainer_hidden_size = trial.suggest_categorical('explainer_hidden_size', [32,64,128])
-    # epochs = 40 
-    epochs = 25
+    epochs = 40 
+    # epochs = 25
     
     wandb.init(
         project=f"{data_name}_{recommender_name}_LXR_training",
@@ -442,7 +442,7 @@ def lxr_training(trial):
         print(f'Finished epoch {epoch} with run_pos_at_20 {last_pos_at_20} and run_neg_at_20 {last_neg_at_20}')
         print(f'Train loss = {train_loss}')
 
-        torch.save(explainer.state_dict(), Path(Neucheckpoints_path, f'{args.whereSaved}/LXR_{data_name}_{recommender_name}_{trial.number}_{epoch}_{explainer_hidden_size}_{lambda_pos}_{lambda_neg}.pt'))
+        torch.save(explainer.state_dict(), Path(Neucheckpoints_path, f'{args.whereToSave}/LXR_{data_name}_{recommender_name}_{trial.number}_{epoch}_{explainer_hidden_size}_{lambda_pos}_{lambda_neg}.pt'))
         print(f'LXR_{data_name}_{recommender_name}_{trial.number}_{epoch}_{explainer_hidden_size}_{lambda_pos}_{lambda_neg}.pt')
         if epoch>=5: # early stop conditions - if both pos@20 and neg@20 are getting worse in the past 4 epochs
             if run_pos_at_20[-2]<run_pos_at_20[-1] and run_pos_at_20[-3]<run_pos_at_20[-2] and run_pos_at_20[-4]<run_pos_at_20[-3]:
@@ -498,7 +498,7 @@ optuna.logging.disable_default_handler()  # Stop showing logs in sys.stderr.
 study = optuna.create_study(direction='minimize')
 
 logger.info("Start optimization.")
-study.optimize(lxr_training, n_trials=2)
+study.optimize(lxr_training, n_trials=1)
 
 with open(f"{data_name}_{recommender_name}_explainer_training.log") as f:
     assert f.readline().startswith("A new study created")

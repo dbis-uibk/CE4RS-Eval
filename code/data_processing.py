@@ -13,7 +13,7 @@ import time
 
 if __name__ == "__main__":
 
-    data_name = "ML1M" ### Can be ML1M, Yahoo, Pinterest
+    data_name = "Pinterest" ### Can be ML1M, Yahoo, Pinterest
     DP_DIR = Path("processed_data", data_name) 
     export_dir = Path(os.getcwd())
     files_path = Path(export_dir, DP_DIR)

@@ -31,7 +31,8 @@ class LimeBase(object):
         self.kernel_fn = kernel_fn
         self.verbose = verbose
         self.random_state = check_random_state(random_state)
-        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        # self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        self.device = 'cpu'
 
     @staticmethod
     def generate_lars_path(weighted_data, weighted_labels):
@@ -233,7 +234,8 @@ def gaussian_kernel(distances, sigma=1):
 def recommender_run(user_tensor, recommender, item_tensor = None, item_id= None, wanted_output = 'single', **kw):
     output_type=kw['output_type']
     recommender_name = kw['recommender_name']
-    device = kw['device'] 
+    # device = kw['device'] 
+    device = 'cpu'
     num_items = kw['num_items']
     
     if output_type == 'single':
@@ -250,7 +252,7 @@ def recommender_run(user_tensor, recommender, item_tensor = None, item_id= None,
 def get_lime_args(user_vec, item_id, model, item_tensor, min_pert = 10, max_pert = 20, num_of_perturbations = 5, seed = 0, **kw):
     output_type=kw['output_type']
     # device = torch.device("cuda" if torch.cuda.is_available() else "cpu") #change
-    device = "cpu"
+    device = 'cpu'
     user_vec[item_id]=0
     neighborhood_data = [user_vec]
     user_tensor =torch.Tensor(user_vec).to(device)

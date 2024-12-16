@@ -25,25 +25,25 @@ import sys
 import os,argparse
 parser = argparse.ArgumentParser(description="List files in a directory that start with a given keyword.") 
 
-parser.add_argument('--dataset', type=str, default="ML1M", nargs='?')
-parser.add_argument('--recName', type=str, default="VAE", nargs='?')
 parser.add_argument('--directoryRec', type=str, default="VAE_ML1M_0.0007_128_10.pt", nargs='?')
 parser.add_argument('--directoryLXR', type=str, default="LXR_ML1M_VAE_26_38_128_3.185652725834087_1.420642300151426.pt", nargs='?')
 parser.add_argument('--SizeLXR', type=int, default=128, nargs='?')
 parser.add_argument('--sizeXP', type=int, default=10, nargs='?')
+parser.add_argument('--lentopk', type=int, default=1, nargs='?')
+
 
 # Parse the arguments
 args = parser.parse_args()
 
 print(f'In this experiment we have DirectoryRec {args.directoryRec} and dirLXR as {args.directoryLXR}')
 print(f'SIZE XP {args.sizeXP}')
+print(f'size of topk is {args.lentopk}')
 
-data_name = args.dataset ### Can be ML1M, Yahoo, Pinterest
-recommender_name = args.recName ### Can be MLP, VAE, LightGCN
+data_name = "ML1M" ### Can be ML1M, Yahoo, Pinterest
+recommender_name = "VAE" ### Can be MLP, VAE, LightGCN
 DP_DIR = Path("processed_data", data_name) 
 export_dir = Path(os.getcwd())
 files_path = Path(export_dir, DP_DIR)
-# files_path = Path(export_dir.parent, DP_DIR)
 checkpoints_path = Path(export_dir, "checkpoints")
 Neucheckpoints_path = Path(export_dir, "Neucheckpoints")
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -68,7 +68,6 @@ num_items_dict = {
 }
 
 recommender_path_dict = {
-    # ("ML1M","VAE"): Path(checkpoints_path, "VAE_ML1M_0.0007_128_10.pt"),
     ("ML1M","VAE"): Path(Neucheckpoints_path, args.directoryRec),
     ("ML1M","MLP"):Path(checkpoints_path, "MLP_ML1M_2_512.pt"),
     ("ML1M", "LightGCN"): Path(checkpoints_path, "LightGCN_ML1M_iter10k.pt"),
@@ -76,7 +75,7 @@ recommender_path_dict = {
     ("Yahoo","VAE"): Path(checkpoints_path, "VAE_Yahoo_0.0001_128_13.pt"),
     ("Yahoo","MLP"):Path(checkpoints_path, "5MLP_Yahoo_5_256.pt"),
     
-    ("Pinterest","VAE"): Path(checkpoints_path, "VAE_Pinterest_12_18_0.0001_256.pt"),
+    ("Pinterest","VAE"): Path(checkpoints_path, "3VAE_Pinterest_2_3_0.0014_128.pt"),
     ("Pinterest","MLP"):Path(checkpoints_path, "MLP_Pinterest_0.0062_512_21_0.pt")
 }
 
@@ -98,10 +97,10 @@ LXR_checkpoint_dict = {
     ("ML1M","MLP"): ('sel_2_LXR_ML1M_MLP_0_3_32_46.54931757000438_19.14191145091549.pt',32),
     ("ML1M", "LightGCN"): ('LXR_ML1M_LightGCN_0_1_64_6.820005312417243_26.942911135968924.pt',64),
 
-   ("Yahoo","VAE"): ('LXR_Yahoo_VAE_neg-1.5pos_combined_19_26_128_18.958765029913238_4.92235962483309.pt',128),
-    ("Yahoo","MLP"):('LXR_Yahoo_MLP_neg-pos_combined_last_29_37_128_12.40692505393434_0.19367009952856118.pt',128),
+    ("Yahoo","VAE"): ('LXR_Yahoo_VAE_neg-1.5pos_combined_19_26_128_18.958765029913238_4.92235962483309.pt',128),
+    ("Yahoo","MLP"):('sel_5YahooLXR_Yahoo_MLP_0_39_32_11.107168366441384_7.177773458235631.pt',32),
 
-    ("Pinterest","VAE"): ('LXR_Pinterest_VAE_comb_4_27_32_6.3443735346179855_1.472868807603448.pt',32),
+    ("Pinterest","VAE"): ('sel _ 3LXR_Pinterest_VAE_0_2_128_46.83909560180911_38.999066543680215.pt',128),
     ("Pinterest","MLP"):('LXR_Pinterest_MLP_0_5_16_10.059416809308486_0.705778173474644.pt',16),
 }
 
@@ -126,7 +125,7 @@ test_array = test_data.to_numpy()
 items_array = np.eye(num_items)
 all_items_tensor = torch.Tensor(items_array).to(device)
 
-test_array = static_test_data.iloc[:,:-2].to_numpy() #change
+test_array = static_test_data.iloc[:500,:-2].to_numpy() #change
 
 with open(Path(files_path, f'jaccard_based_sim_{data_name}.pkl'), 'rb') as f:
     jaccard_dict = pickle.load(f) 
@@ -230,14 +229,10 @@ explainer = load_explainer()
 
 from help_functions import *
 
-# # Baselines functions
-# ### Every function produces explanations for a designated baseline, resulting in a dictionary that maps items from the user's history to their explanation scores based on that baseline.
-
 sys.path.append('../baselines') 
-# from ipynb.fs.defs.lime import *
+
 from lime import *
-# importlib.reload(ipynb.fs.defs.lime)
-# from ipynb.fs.defs.lime import *
+
 
 lime = LimeBase(distance_to_proximity)
 
@@ -407,7 +402,7 @@ def single_user_metrics(user_vector, user_tensor, item_id, item_tensor, num_of_b
     user_hist_size = np.sum(user_vector)
     
     
-    bins=[0]+[len(x) for x in np.array_split(np.arange(user_hist_size), user_hist_size, axis=0)]
+    bins=[0]+[len(x) for x in np.array_split(np.arange(user_hist_size), num_of_bins, axis=0)]
     
     POS_at_1 = [0]*(len(bins))
     POS_at_5 = [0]*(len(bins))
@@ -433,7 +428,7 @@ def single_user_metrics(user_vector, user_tensor, item_id, item_tensor, num_of_b
     NEG_sim_items  = list(sorted(dict(POS_sim_items).items(), key=lambda item: item[1],reverse=False))
     
     total_items=0
-    for i in range(min(len(bins),args.sizeXP)):
+    for i in range(len(bins)):
         total_items += bins[i]
             
         POS_masked = torch.zeros_like(user_tensor, dtype=torch.float32, device=device)
@@ -483,11 +478,10 @@ def single_user_metrics(user_vector, user_tensor, item_id, item_tensor, num_of_b
     res = [DEL, INS, NDCG, POS_at_1, POS_at_5, POS_at_10, POS_at_20, POS_at_50, POS_at_100,  NEG_at_1, NEG_at_5, NEG_at_10, NEG_at_20, NEG_at_50, NEG_at_100]
     for i in range(len(res)):
         res[i] = np.array(res[i])
-        res[i] = sum(res[i])/len(res[i])
         
     return res
 
-create_dictionaries = False # if it is the first time generating the explanations
+create_dictionaries = True # if it is the first time generating the explanations
 
 if create_dictionaries:
     import time
@@ -558,8 +552,8 @@ def eval_one_expl_type(expl_name):
         expl_dict = pickle.load(handle)
     recommender.eval()
     # Evaluate the model on the test set
-    num_of_bins = test_array.shape[0] + 1 #change from 11 to 31
-    print(f'num of the bins is : {num_of_bins}')
+    num_of_bins = 11
+
 
     users_DEL = np.zeros(num_of_bins)
     users_INS = np.zeros(num_of_bins)
@@ -577,7 +571,7 @@ def eval_one_expl_type(expl_name):
     NEG_at_50 = np.zeros(num_of_bins)
     NEG_at_100 = np.zeros(num_of_bins)
 
-    num_of_bins=10 # change from 10 to 30
+    num_of_bins=10
 
 
     with torch.no_grad():
@@ -591,27 +585,27 @@ def eval_one_expl_type(expl_name):
             item_vector =  items_array[item_id]
             item_tensor = torch.FloatTensor(item_vector).to(device)
 
-            user_vector[item_id] = 0 #why? 
+            user_vector[item_id] = 0
             user_tensor[item_id] = 0
 
             user_expl = expl_dict[user_id]
 
             res = single_user_metrics(user_vector, user_tensor, item_id, item_tensor, num_of_bins, recommender, user_expl, **kw_dict)
-            users_DEL[i] = res[0]
-            users_INS[i] = res[1]
-            NDCG[i] = res[2]
-            POS_at_1[i] = res[3]
-            POS_at_5[i] = res[4]
-            POS_at_10[i] = res[5]
-            POS_at_20[i] = res[6]
-            POS_at_50[i] = res[7]
-            POS_at_100[i] = res[8]
-            NEG_at_1[i] = res[9]
-            NEG_at_5[i] = res[10]
-            NEG_at_10[i] = res[11]
-            NEG_at_20[i] = res[12]
-            NEG_at_50[i] = res[13]
-            NEG_at_100[i] = res[14]
+            users_DEL += res[0]
+            users_INS += res[1]
+            NDCG += res[2]
+            POS_at_1 += res[3]
+            POS_at_5 += res[4]
+            POS_at_10 += res[5]
+            POS_at_20 += res[6]
+            POS_at_50 += res[7]
+            POS_at_100 += res[8]
+            NEG_at_1 += res[9]
+            NEG_at_5 += res[10]
+            NEG_at_10 += res[11]
+            NEG_at_20 += res[12]
+            NEG_at_50 += res[13]
+            NEG_at_100 += res[14]
 
             if i%500 == 0:
                 prev_time = time.time()
@@ -619,27 +613,26 @@ def eval_one_expl_type(expl_name):
 
     a = i+1
     print(f'this experiment is for {recommender_path} and {recommender_name}')
-    print(f'users_DEL_{expl_name}: ', np.mean(users_DEL))
-    print(f'users_INS_{expl_name}: ', np.mean(users_INS))
-    print(f'NDCG_{expl_name}: ', np.mean(NDCG))
-    print(f'POS_at_1_{expl_name}: ', np.mean(POS_at_1))
-    print(f'POS_at_5_{expl_name}: ', np.mean(POS_at_5))
-    print(f'POS_at_10_{expl_name}: ', np.mean(POS_at_10))
-    print(f'POS_at_20_{expl_name}: ', np.mean(POS_at_20))
-    print(f'POS_at_50_{expl_name}: ', np.mean(POS_at_50))
-    print(f'POS_at_100_{expl_name}: ', np.mean(POS_at_100))
-    print(f'NEG_at_1_{expl_name}: ', np.mean(NEG_at_1))
-    print(f'NEG_at_5_{expl_name}: ', np.mean(NEG_at_5))
-    print(f'NEG_at_10_{expl_name}: ', np.mean(NEG_at_10))
-    print(f'NEG_at_20_{expl_name}: ', np.mean(NEG_at_20))
-    print(f'NEG_at_50_{expl_name}: ', np.mean(NEG_at_50))
-    print(f'NEG_at_100_{expl_name}: ', np.mean(NEG_at_100))
+    print(f'users_DEL_{expl_name}: ', np.mean(users_DEL)/a)
+    print(f'users_INS_{expl_name}: ', np.mean(users_INS)/a)
+    print(f'NDCG_{expl_name}: ', np.mean(NDCG)/a)
+    print(f'POS_at_1_{expl_name}: ', np.mean(POS_at_1)/a)
+    print(f'POS_at_5_{expl_name}: ', np.mean(POS_at_5)/a)
+    print(f'POS_at_10_{expl_name}: ', np.mean(POS_at_10)/a)
+    print(f'POS_at_20_{expl_name}: ', np.mean(POS_at_20)/a)
+    print(f'POS_at_50_{expl_name}: ', np.mean(POS_at_50)/a)
+    print(f'POS_at_100_{expl_name}: ', np.mean(POS_at_100)/a)
+    print(f'NEG_at_1_{expl_name}: ', np.mean(NEG_at_1)/a)
+    print(f'NEG_at_5_{expl_name}: ', np.mean(NEG_at_5)/a)
+    print(f'NEG_at_10_{expl_name}: ', np.mean(NEG_at_10)/a)
+    print(f'NEG_at_20_{expl_name}: ', np.mean(NEG_at_20)/a)
+    print(f'NEG_at_50_{expl_name}: ', np.mean(NEG_at_50)/a)
+    print(f'NEG_at_100_{expl_name}: ', np.mean(NEG_at_100)/a)
 
     
     print(np.mean(users_DEL)/a , np.mean(users_INS)/a, np.mean(NDCG)/a , np.mean(POS_at_1)/a , np.mean(NEG_at_1)/a, np.mean(POS_at_5)/a , np.mean(NEG_at_5)/a, np.mean(POS_at_10)/a , np.mean(NEG_at_10)/a , np.mean(POS_at_20)/a , np.mean(NEG_at_20)/a, np.mean(POS_at_50)/a , np.mean(NEG_at_50)/a, np.mean(POS_at_100)/a , np.mean(NEG_at_100)/a)
 
-expl_names_list = ['lxr','jaccard','cosine','lime' ,'shap','accent'] # specify the names of the baselines for which you wish to calculate the metrics values.
+expl_names_list = ['lxr','lime','jaccard', 'cosine','shap','accent'] # specify the names of the baselines for which you wish to calculate the metrics values.
 
 for expl_name in expl_names_list:
-    print(f'size of explanation is {args.sizeXP}')
     eval_one_expl_type(expl_name)
