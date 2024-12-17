@@ -38,8 +38,10 @@ To use this code, follow these steps:
 
 ## Resutls
 
+![RecLengthFig](https://github.com/dbis-uibk/CE4RS-Eval/blob/main/Resutls/Figures/TopK.png)
+![XpSizeFig](https://github.com/dbis-uibk/CE4RS-Eval/blob/main/Resutls/Figures/xpSize.png)
+
 ![MLP_ML1M_table](https://github.com/dbis-uibk/CFX-Metric/blob/main/Experiments%20Result/img/MLP%20ML-1M.png)
-![RecLengthFig](https://github.com/dbis-uibk/CE4RS-Eval/blob/main/Resutls/Figures/RecLengthFig.pdf)
 
 
 
