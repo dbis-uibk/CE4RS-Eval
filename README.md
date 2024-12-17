@@ -1,6 +1,7 @@
 # CE4RS-Eval
 Counterfactual Explanation for Recommender Systems - Evaluation 
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ## Repository
 
 This repository contains code of the paper "A Closer Look at Counterfactual Explanation Metrics for Recommender Systems" paper. We have evaluated our claim on three publicly available benchmarks, MovieLens1M, a subset of Yahoo!Music dataset and a subset of Pinterest dataset, using two different recommenders, Matric Factorization (MF) and Variational Auto Encoder (VAE). 
@@ -24,6 +25,23 @@ This repository contains code of the paper "A Closer Look at Counterfactual Expl
 * python 3.10
 * Pytorch 1.13
 * wandb 0.16.3 (the package we used for monitoring the train process)
+
+* ## Installation
+Main libraries:
+* [PyTorch](https://www.pytorch.org/): as the main ML framework
+* [Comet.ml](https://www.comet.ml): tracking code, logging experiments
+* [OmegaConf](https://omegaconf.readthedocs.io/en/latest/): for managing configuration files
+
+First create a virtual env for the project. 
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+Then install the latest version of PyTorch from the [official site](https://www.pytorch.org/). Finally, run the following:
+```bash
+pip install -r requirements.txt
+```
 
 ## Usage
 
@@ -49,5 +67,12 @@ To use this code, follow these steps:
 ![MLP_ML1M_table](https://github.com/dbis-uibk/CFX-Metric/blob/main/Experiments%20Result/img/MLP%20ML-1M.png)
 
 
+## Acknowledgements
+Thanks to [LXR] for making their code public.
 
+## Citation
+If you find the code helpful, please cite this work:
+```
+
+```
 
