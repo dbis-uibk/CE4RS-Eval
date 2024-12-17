@@ -1,5 +1,7 @@
 # CE4RS-Eval
-Counterfactual Explanation for Recommender Systems - Evaluation 
+### Counterfactual Explanation for Recommender Systems - Evaluation 
+In this paper, we critically examine the evaluation of counterfactual explainers through consistency and explanation sparsity as key principles of effective explanation.
+Through extensive experiments, we assess how incorporating Top-k recommendations impacts the consistency of existing evaluation metrics; and analyze the impact of explanation size on explainer's performance, highlighting its importance as a key determinant of explanation quality.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ## Repository
@@ -56,14 +58,24 @@ To use this code, follow these steps:
 
 ## Resutls
 
+#### Top-K recommenders on metric consistency
+Comparison of CE methods based on POS@5 (lower value is the better) across 4 performance levels of the VAE recommender on ML-1M dataset. The figure shows the impact of going beyond Top-1 (a) and considering Top-k (b-d) recommendations on improving consistency when evaluating CE models. To facilitate clearer comparisons, the values are normalized using Min-max normalization, and shading is used to represent the variance in the results.
 ![RecLengthFig](https://github.com/dbis-uibk/CE4RS-Eval/blob/main/Resutls/Figures/TopK.png)
+
+#### Explanation Sparsity Metric
+Performance of CE methods across three datasets based on explanation sparsity metric using VAE recommender. The evaluation is conducted over eight explanation sizes, providing a comparative analysis of the methods. To facilitate clearer comparisons, the values are normalized using Min-max normalization. The results highlight dataset-specific performance variations, reflecting the effectiveness of each CE method on specific sparsity levels.
 ![XpSizeFig](https://github.com/dbis-uibk/CE4RS-Eval/blob/main/Resutls/Figures/xpSize.png)
 
+#### Metric Consistency on MF Recommender
 ![TopKMFRec](https://github.com/dbis-uibk/CE4RS-Eval/blob/main/Resutls/Figures/TopkMF.png)
+
+#### POS consistency on Pinterest dataset
 ![TopKpinterestVAE](https://github.com/dbis-uibk/CE4RS-Eval/blob/main/Resutls/Figures/TopkVAEPinterest.png)
 
+#### Consistency Evaluation effects of Top1 to Top5 
 ![TopKExcel](https://github.com/dbis-uibk/CE4RS-Eval/blob/main/Resutls/Figures/TopKinExcel.png)
 
+#### Evaluation based on ONLY Top-1
 ![MLP_ML1M_table](https://github.com/dbis-uibk/CFX-Metric/blob/main/Experiments%20Result/img/MLP%20ML-1M.png)
 
 
