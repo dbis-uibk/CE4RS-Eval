@@ -41,7 +41,13 @@ To use this code, follow these steps:
 ![RecLengthFig](https://github.com/dbis-uibk/CE4RS-Eval/blob/main/Resutls/Figures/TopK.png)
 ![XpSizeFig](https://github.com/dbis-uibk/CE4RS-Eval/blob/main/Resutls/Figures/xpSize.png)
 
+![TopKMFRec](https://github.com/dbis-uibk/CE4RS-Eval/blob/main/Resutls/Figures/TopkMF.png)
+![TopKpinterestVAE](https://github.com/dbis-uibk/CE4RS-Eval/blob/main/Resutls/Figures/TopkVAEPinterest.png)
+
+![TopKExcel](https://github.com/dbis-uibk/CE4RS-Eval/blob/main/Resutls/Figures/TopKinExcel.png)
+
 ![MLP_ML1M_table](https://github.com/dbis-uibk/CFX-Metric/blob/main/Experiments%20Result/img/MLP%20ML-1M.png)
+
 
 
 
