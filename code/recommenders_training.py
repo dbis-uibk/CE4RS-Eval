@@ -35,7 +35,7 @@ import os
 import argparse
 
 data_name = "Pinterest" ### Can be ML1M, Yahoo, Pinterest
-recommender_name = "VAE" ## Can be MLP, VAE, MLP_model, GMF_model, NCF, LightGCN
+recommender_name = "MLP" ## Can be MLP, VAE, MLP_model, GMF_model, NCF, LightGCN
 
 DP_DIR = Path("processed_data", data_name) 
 export_dir = Path(os.getcwd())

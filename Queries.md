@@ -2,6 +2,8 @@
 sbatch --job-name=LXRpreproc --mail-user=amir.reza@uibk.ac.at --time=12:00:00 --mem=64G ~/jobs/single-node-gpu.job "python code/data_processing.py"
 
 ### Recommender Training
+sbatch --job-name=CE4RS --mail-user=amir.reza@uibk.ac.at --time=12:00:00 --mem=64G ~/jobs/single-node-gpu.job "python code/recommenders_training.py"
+
 sbatch --job-name=XXXX --mail-user=amir.reza@uibk.ac.at --time=12:00:00 --mem=64G ~/jobs/single-node-gpu.job "python code/LXR_training.py --trial 0 --learning_rate 0.004 --lambda_neg XXX --lambda_pos XXX --alpha XXX"
 
 
@@ -15,12 +17,14 @@ sbatch --job-name=Alpha --mail-user=amir.reza@uibk.ac.at --time=12:00:00 --mem=6
 
 
 ## LXR Training  
-sbatch --job-name=LXR --mail-user=amir.reza@uibk.ac.at --time=12:00:00 --mem=64G ~/jobs/single-node-gpu.job "python code/LXR_training.py --directory Sel2/VAE_ML1M_1_12_256.pt --whereToSave LXR2/12"
+sbatch --job-name=LXR --mail-user=amir.reza@uibk.ac.at --time=12:00:00 --mem=64G ~/jobs/single-node-gpu.job "python code/LXR_training.py --directory ML1M/MF/Recommenders/MLP_ML1M_0_512.pt --whereToSave ML1M/MF/LXR/0 --model MLP --data ML1M"
 
 --> Directory: Recommender Checkpoint --> Ml1M/Recommenders/VAE_ML1M_1_12_256.pt
 --> whereToSave: Where to dump the LXR checkpoint --> ML1M/LXR/number
 --> model: VAE, MLP
---> Data: ML1M. Pinterest, Yahoo
+--> data: ML1M. Pinterest, Yahoo
+
+
  
 
 
