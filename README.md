@@ -56,24 +56,24 @@ To use this code, follow these steps:
 + From the output checkpoints check which recommenders you want to pick for explanation. Then set the file name of the checkpoint in LXR_training.py or pass it as a argument by --directory and run to train the explainers. 
 + Then to get other explainers and evaluate LXR evaluation, run the metrics.py file. This will print all the numbers you want. We have all these outputs in "Experiments Results" folder.
 
-## Resutls
+## Results
 
 #### Top-K recommenders on metric consistency
 Comparison of CE methods based on POS@5 (lower value is the better) across 4 performance levels of the VAE recommender on ML-1M dataset. The figure shows the impact of going beyond Top-1 (a) and considering Top-k (b-d) recommendations on improving consistency when evaluating CE models. To facilitate clearer comparisons, the values are normalized using Min-max normalization, and shading is used to represent the variance in the results.
-![RecLengthFig](https://github.com/dbis-uibk/CE4RS-Eval/blob/main/Resutls/Figures/TopK.png)
+![RecLengthFig](https://github.com/dbis-uibk/CE4RS-Eval/blob/main/Results/Figures/TopK.png)
 
 #### Explanation Sparsity Metric
 Performance of CE methods across three datasets based on explanation sparsity metric using VAE recommender. The evaluation is conducted over eight explanation sizes, providing a comparative analysis of the methods. To facilitate clearer comparisons, the values are normalized using Min-max normalization. The results highlight dataset-specific performance variations, reflecting the effectiveness of each CE method on specific sparsity levels.
-![XpSizeFig](https://github.com/dbis-uibk/CE4RS-Eval/blob/main/Resutls/Figures/xpSize.png)
+![XpSizeFig](https://github.com/dbis-uibk/CE4RS-Eval/blob/main/Results/Figures/xpSize.png)
 
 #### Metric Consistency on MF Recommender
-![TopKMFRec](https://github.com/dbis-uibk/CE4RS-Eval/blob/main/Resutls/Figures/TopkMF.png)
+![TopKMFRec](https://github.com/dbis-uibk/CE4RS-Eval/blob/main/Results/Figures/TopkMF.png)
 
 #### POS consistency on Pinterest dataset
-![TopKpinterestVAE](https://github.com/dbis-uibk/CE4RS-Eval/blob/main/Resutls/Figures/TopkVAEPinterest.png)
+![TopKpinterestVAE](https://github.com/dbis-uibk/CE4RS-Eval/blob/main/Results/Figures/TopkVAEPinterest.png)
 
 #### Consistency Evaluation effects of Top1 to Top5 
-![TopKExcel](https://github.com/dbis-uibk/CE4RS-Eval/blob/main/Resutls/Figures/TopKinExcel.png)
+![TopKExcel](https://github.com/dbis-uibk/CE4RS-Eval/blob/main/Results/Figures/TopKinExcel.png)
 
 #### Evaluation based on ONLY Top-1
 ![MLP_ML1M_table](https://github.com/dbis-uibk/CFX-Metric/blob/main/Experiments%20Result/img/MLP%20ML-1M.png)
