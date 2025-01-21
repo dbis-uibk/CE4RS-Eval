@@ -1,5 +1,3 @@
-# # Imports
-
 import pandas as pd
 import numpy as np
 import os
@@ -33,7 +31,7 @@ parser.add_argument('--lambda_neg', type=float, default=7, nargs='?')
 parser.add_argument('--alpha', type=int, default=1, nargs='?')
 parser.add_argument('--learning_rate', type=float, default=0.004, nargs='?')
 parser.add_argument('--trial', type=int, default=0 , nargs='?')
-parser.add_argument('--whereToSave', type=str, default='', nargs='?')
+parser.add_argument('--whereToSave', type=str, default='ML1M', nargs='?')
 
 args = parser.parse_args()
 recommender_name = args.model
@@ -123,7 +121,7 @@ kw_dict = {'device':device,
           'recommender_name':recommender_name}
 
 
-from recommenders_architecture import VAE
+from recommenders_architecture import VAE, MLP
 
 VAE_config= {
 "enc_dims": [512,128], #right number corresponds with file values
@@ -151,7 +149,7 @@ from help_functions import *
 
 # ## Load / create top recommended items dict
 
-create_dicts = True
+create_dicts = False
 if create_dicts:
     top1_train = {}
     top1_test = {}

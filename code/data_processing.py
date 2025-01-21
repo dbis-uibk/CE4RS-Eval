@@ -13,7 +13,7 @@ import time
 
 if __name__ == "__main__":
 
-    data_name = "Pinterest" ### Can be ML1M, Yahoo, Pinterest
+    data_name = "ML1M" ### Can be ML1M, Yahoo, Pinterest
     DP_DIR = Path("processed_data", data_name) 
     export_dir = Path(os.getcwd())
     files_path = Path(export_dir, DP_DIR)
@@ -123,7 +123,7 @@ if __name__ == "__main__":
         pickle.dump(jaccard_dict, f)
 
     cosine_items = cosine_similarity(X_train.T).astype('float32')
-    cosine_items.shape
+    # cosine_items.shape
 
     cosine_items_dict = {}
 

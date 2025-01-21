@@ -65,3 +65,5 @@ sbatch --job-name=LXR --mail-user=amir.reza@uibk.ac.at --time=12:00:00 --mem=64G
 ### commands
 srun --nodes=1 --nodelist=gc7 --ntasks-per-node=1 --time=12:00:00 --pty bash -i
 source ../CFX-REC/cfx-recVenv/bin/activate
+
+source ../../xrs/LXR/venvLXR/bin/activate
