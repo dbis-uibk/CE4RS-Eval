@@ -6,7 +6,7 @@ Through extensive experiments, we assess how incorporating Top-k recommendations
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ## Repository
 
-This repository contains code of the paper "A Closer Look at Counterfactual Explanation Metrics for Recommender Systems" paper. We have evaluated our claim on three publicly available benchmarks, MovieLens1M, a subset of Yahoo!Music dataset and a subset of Pinterest dataset, using two different recommenders, Matric Factorization (MF) and Variational Auto Encoder (VAE). 
+This repository contains code of the paper "Beyond Top-1: Mitigating Inconsistency in the Evaluation of Counterfactual Explanations for Recommender Systems" paper. We have evaluated our claim on three publicly available benchmarks, MovieLens1M, a subset of Yahoo!Music dataset and a subset of Pinterest dataset, using two different recommenders, Matric Factorization (MF) and Variational Auto Encoder (VAE). 
 
 ## Folders
 
