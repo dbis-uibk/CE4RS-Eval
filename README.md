@@ -75,7 +75,7 @@ Performance of CE methods across three datasets based on explanation sparsity me
 #### Consistency Evaluation effects of Top1 to Top5 
 ![TopKExcel](https://github.com/dbis-uibk/CE4RS-Eval/blob/main/Results/Figures/TopKinExcel.png)
 
-#### POS@20 on ML1M dataset and VAE Recommender
+#### POS@20 on ML1M dataset and MF Recommender
 ![POS20ML1MVAE](https://github.com/dbis-uibk/CE4RS-Eval/blob/main/Results/Figures/pos20ML1MVAE.png)
 
 #### POS@10 on Yahoo dataset and  MF Recommender
