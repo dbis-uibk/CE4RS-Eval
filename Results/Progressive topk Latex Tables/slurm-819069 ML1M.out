@@ -1,0 +1,1469 @@
+
+======================================================================
+MODE: GENERATE - Running Experiments
+======================================================================
+
+[Step 1/2] Training recommender and saving checkpoints...
+
+======================================================================
+Training VAE on ML1M with adaptive checkpoint saving
+Target: 4 checkpoints with 5% HR@10 improvement
+======================================================================
+
+Loading data from /home/amir.reza/counterfactual/CE4RS-Eval/processed_data/ML1M...
+Initializing VAE model...
+
+Starting training for up to 50 epochs...
+Batch size: 1024, Learning rate: 0.005
+Will save checkpoint when HR@10 improves by ≥5%
+
+Epoch 1/50 - Loss: 756.1812, HR@10: 0.0298, HR@50: 0.1333
+Epoch 2/50 - Loss: 709.8698, HR@10: 0.0861, HR@50: 0.2136
+  ✓ Saved checkpoint 1/4: VAE_ML1M_perf1_epoch2_hr0.0861.pt
+Epoch 3/50 - Loss: 703.8105, HR@10: 0.0861, HR@50: 0.2177
+Epoch 4/50 - Loss: 692.2130, HR@10: 0.0786, HR@50: 0.2326
+Epoch 5/50 - Loss: 689.0897, HR@10: 0.0877, HR@50: 0.2301
+Epoch 6/50 - Loss: 685.3404, HR@10: 0.0894, HR@50: 0.2310
+Epoch 7/50 - Loss: 686.3083, HR@10: 0.0844, HR@50: 0.2575
+Epoch 8/50 - Loss: 676.2181, HR@10: 0.0952, HR@50: 0.2715
+  → HR@10 improved by 10.6% from last checkpoint
+  ✓ Saved checkpoint 2/4: VAE_ML1M_perf2_epoch8_hr0.0952.pt
+Epoch 9/50 - Loss: 675.8477, HR@10: 0.0977, HR@50: 0.2798
+Epoch 10/50 - Loss: 670.1576, HR@10: 0.1151, HR@50: 0.2972
+  → HR@10 improved by 20.9% from last checkpoint
+  ✓ Saved checkpoint 3/4: VAE_ML1M_perf3_epoch10_hr0.1151.pt
+Epoch 11/50 - Loss: 666.7075, HR@10: 0.1192, HR@50: 0.2980
+Epoch 12/50 - Loss: 666.4901, HR@10: 0.1225, HR@50: 0.2964
+  → HR@10 improved by 6.5% from last checkpoint
+  ✓ Saved checkpoint 4/4: VAE_ML1M_perf4_epoch12_hr0.1225.pt
+
+[INFO] Collected 4 checkpoints. Stopping training early at epoch 12.
+
+======================================================================
+Training complete! Saved 4 checkpoints across 4 performance levels:
+  Level 1: Epoch 2, HR@10 = 0.0861 - VAE_ML1M_perf1_epoch2_hr0.0861.pt
+  Level 2: Epoch 8, HR@10 = 0.0952 - VAE_ML1M_perf2_epoch8_hr0.0952.pt
+  Level 3: Epoch 10, HR@10 = 0.1151 - VAE_ML1M_perf3_epoch10_hr0.1151.pt
+  Level 4: Epoch 12, HR@10 = 0.1225 - VAE_ML1M_perf4_epoch12_hr0.1225.pt
+======================================================================
+
+
+[Step 2/2] Running Top-K experiments...
+
+======================================================================
+Running Top-K Experiments
+======================================================================
+
+Loading dataset and preprocessed dictionaries...
+[DEBUG] Limiting test users: 1208 -> 100
+Loading LXR explainer from checkpoints/LXR_ML1M_VAE_26_38_128_3.185652725834087_1.420642300151426.pt...
+
+Loading recommender from Neucheckpoints/ConsistencyExp/ML1M/VAE/VAE_ML1M_perf1_epoch2_hr0.0861.pt...
+
+[1/20] Running experiment:
+  Performance Level: 1 (Epoch 2, HR=0.0861)
+  Top-K: 1
+  Generating explanations for 100 users...
+    Processing user 0/100...
+  Evaluating explanation methods...
+    Evaluating lxr...
+    Evaluating jaccard...
+    Evaluating cosine...
+    Evaluating lime...
+    Evaluating shap...
+    Evaluating accent...
+  ✓ Success - saved to Results/ConsistencyAnalysis/ML1M/VAE/perf1/topk1/metrics.out
+
+[2/20] Running experiment:
+  Performance Level: 1 (Epoch 2, HR=0.0861)
+  Top-K: 2
+  Generating explanations for 100 users...
+    Processing user 0/100...
+  Evaluating explanation methods...
+    Evaluating lxr...
+    Evaluating jaccard...
+    Evaluating cosine...
+    Evaluating lime...
+    Evaluating shap...
+    Evaluating accent...
+  ✓ Success - saved to Results/ConsistencyAnalysis/ML1M/VAE/perf1/topk2/metrics.out
+
+[3/20] Running experiment:
+  Performance Level: 1 (Epoch 2, HR=0.0861)
+  Top-K: 3
+  Generating explanations for 100 users...
+    Processing user 0/100...
+  Evaluating explanation methods...
+    Evaluating lxr...
+    Evaluating jaccard...
+    Evaluating cosine...
+    Evaluating lime...
+    Evaluating shap...
+    Evaluating accent...
+  ✓ Success - saved to Results/ConsistencyAnalysis/ML1M/VAE/perf1/topk3/metrics.out
+
+[4/20] Running experiment:
+  Performance Level: 1 (Epoch 2, HR=0.0861)
+  Top-K: 4
+  Generating explanations for 100 users...
+    Processing user 0/100...
+  Evaluating explanation methods...
+    Evaluating lxr...
+    Evaluating jaccard...
+    Evaluating cosine...
+    Evaluating lime...
+    Evaluating shap...
+    Evaluating accent...
+  ✓ Success - saved to Results/ConsistencyAnalysis/ML1M/VAE/perf1/topk4/metrics.out
+
+[5/20] Running experiment:
+  Performance Level: 1 (Epoch 2, HR=0.0861)
+  Top-K: 5
+  Generating explanations for 100 users...
+    Processing user 0/100...
+  Evaluating explanation methods...
+    Evaluating lxr...
+    Evaluating jaccard...
+    Evaluating cosine...
+    Evaluating lime...
+    Evaluating shap...
+    Evaluating accent...
+  ✓ Success - saved to Results/ConsistencyAnalysis/ML1M/VAE/perf1/topk5/metrics.out
+
+Loading recommender from Neucheckpoints/ConsistencyExp/ML1M/VAE/VAE_ML1M_perf2_epoch8_hr0.0952.pt...
+
+[6/20] Running experiment:
+  Performance Level: 2 (Epoch 8, HR=0.0952)
+  Top-K: 1
+  Generating explanations for 100 users...
+    Processing user 0/100...
+  Evaluating explanation methods...
+    Evaluating lxr...
+    Evaluating jaccard...
+    Evaluating cosine...
+    Evaluating lime...
+    Evaluating shap...
+    Evaluating accent...
+  ✓ Success - saved to Results/ConsistencyAnalysis/ML1M/VAE/perf2/topk1/metrics.out
+
+[7/20] Running experiment:
+  Performance Level: 2 (Epoch 8, HR=0.0952)
+  Top-K: 2
+  Generating explanations for 100 users...
+    Processing user 0/100...
+  Evaluating explanation methods...
+    Evaluating lxr...
+    Evaluating jaccard...
+    Evaluating cosine...
+    Evaluating lime...
+    Evaluating shap...
+    Evaluating accent...
+  ✓ Success - saved to Results/ConsistencyAnalysis/ML1M/VAE/perf2/topk2/metrics.out
+
+[8/20] Running experiment:
+  Performance Level: 2 (Epoch 8, HR=0.0952)
+  Top-K: 3
+  Generating explanations for 100 users...
+    Processing user 0/100...
+  Evaluating explanation methods...
+    Evaluating lxr...
+    Evaluating jaccard...
+    Evaluating cosine...
+    Evaluating lime...
+    Evaluating shap...
+    Evaluating accent...
+  ✓ Success - saved to Results/ConsistencyAnalysis/ML1M/VAE/perf2/topk3/metrics.out
+
+[9/20] Running experiment:
+  Performance Level: 2 (Epoch 8, HR=0.0952)
+  Top-K: 4
+  Generating explanations for 100 users...
+    Processing user 0/100...
+  Evaluating explanation methods...
+    Evaluating lxr...
+    Evaluating jaccard...
+    Evaluating cosine...
+    Evaluating lime...
+    Evaluating shap...
+    Evaluating accent...
+  ✓ Success - saved to Results/ConsistencyAnalysis/ML1M/VAE/perf2/topk4/metrics.out
+
+[10/20] Running experiment:
+  Performance Level: 2 (Epoch 8, HR=0.0952)
+  Top-K: 5
+  Generating explanations for 100 users...
+    Processing user 0/100...
+  Evaluating explanation methods...
+    Evaluating lxr...
+    Evaluating jaccard...
+    Evaluating cosine...
+    Evaluating lime...
+    Evaluating shap...
+    Evaluating accent...
+  ✓ Success - saved to Results/ConsistencyAnalysis/ML1M/VAE/perf2/topk5/metrics.out
+
+Loading recommender from Neucheckpoints/ConsistencyExp/ML1M/VAE/VAE_ML1M_perf3_epoch10_hr0.1151.pt...
+
+[11/20] Running experiment:
+  Performance Level: 3 (Epoch 10, HR=0.1151)
+  Top-K: 1
+  Generating explanations for 100 users...
+    Processing user 0/100...
+  Evaluating explanation methods...
+    Evaluating lxr...
+    Evaluating jaccard...
+    Evaluating cosine...
+    Evaluating lime...
+    Evaluating shap...
+    Evaluating accent...
+  ✓ Success - saved to Results/ConsistencyAnalysis/ML1M/VAE/perf3/topk1/metrics.out
+
+[12/20] Running experiment:
+  Performance Level: 3 (Epoch 10, HR=0.1151)
+  Top-K: 2
+  Generating explanations for 100 users...
+    Processing user 0/100...
+  Evaluating explanation methods...
+    Evaluating lxr...
+    Evaluating jaccard...
+    Evaluating cosine...
+    Evaluating lime...
+    Evaluating shap...
+    Evaluating accent...
+  ✓ Success - saved to Results/ConsistencyAnalysis/ML1M/VAE/perf3/topk2/metrics.out
+
+[13/20] Running experiment:
+  Performance Level: 3 (Epoch 10, HR=0.1151)
+  Top-K: 3
+  Generating explanations for 100 users...
+    Processing user 0/100...
+  Evaluating explanation methods...
+    Evaluating lxr...
+    Evaluating jaccard...
+    Evaluating cosine...
+    Evaluating lime...
+    Evaluating shap...
+    Evaluating accent...
+  ✓ Success - saved to Results/ConsistencyAnalysis/ML1M/VAE/perf3/topk3/metrics.out
+
+[14/20] Running experiment:
+  Performance Level: 3 (Epoch 10, HR=0.1151)
+  Top-K: 4
+  Generating explanations for 100 users...
+    Processing user 0/100...
+  Evaluating explanation methods...
+    Evaluating lxr...
+    Evaluating jaccard...
+    Evaluating cosine...
+    Evaluating lime...
+    Evaluating shap...
+    Evaluating accent...
+  ✓ Success - saved to Results/ConsistencyAnalysis/ML1M/VAE/perf3/topk4/metrics.out
+
+[15/20] Running experiment:
+  Performance Level: 3 (Epoch 10, HR=0.1151)
+  Top-K: 5
+  Generating explanations for 100 users...
+    Processing user 0/100...
+  Evaluating explanation methods...
+    Evaluating lxr...
+    Evaluating jaccard...
+    Evaluating cosine...
+    Evaluating lime...
+    Evaluating shap...
+    Evaluating accent...
+  ✓ Success - saved to Results/ConsistencyAnalysis/ML1M/VAE/perf3/topk5/metrics.out
+
+Loading recommender from Neucheckpoints/ConsistencyExp/ML1M/VAE/VAE_ML1M_perf4_epoch12_hr0.1225.pt...
+
+[16/20] Running experiment:
+  Performance Level: 4 (Epoch 12, HR=0.1225)
+  Top-K: 1
+  Generating explanations for 100 users...
+    Processing user 0/100...
+  Evaluating explanation methods...
+    Evaluating lxr...
+    Evaluating jaccard...
+    Evaluating cosine...
+    Evaluating lime...
+    Evaluating shap...
+    Evaluating accent...
+  ✓ Success - saved to Results/ConsistencyAnalysis/ML1M/VAE/perf4/topk1/metrics.out
+
+[17/20] Running experiment:
+  Performance Level: 4 (Epoch 12, HR=0.1225)
+  Top-K: 2
+  Generating explanations for 100 users...
+    Processing user 0/100...
+  Evaluating explanation methods...
+    Evaluating lxr...
+    Evaluating jaccard...
+    Evaluating cosine...
+    Evaluating lime...
+    Evaluating shap...
+    Evaluating accent...
+  ✓ Success - saved to Results/ConsistencyAnalysis/ML1M/VAE/perf4/topk2/metrics.out
+
+[18/20] Running experiment:
+  Performance Level: 4 (Epoch 12, HR=0.1225)
+  Top-K: 3
+  Generating explanations for 100 users...
+    Processing user 0/100...
+  Evaluating explanation methods...
+    Evaluating lxr...
+    Evaluating jaccard...
+    Evaluating cosine...
+    Evaluating lime...
+    Evaluating shap...
+    Evaluating accent...
+  ✓ Success - saved to Results/ConsistencyAnalysis/ML1M/VAE/perf4/topk3/metrics.out
+
+[19/20] Running experiment:
+  Performance Level: 4 (Epoch 12, HR=0.1225)
+  Top-K: 4
+  Generating explanations for 100 users...
+    Processing user 0/100...
+  Evaluating explanation methods...
+    Evaluating lxr...
+    Evaluating jaccard...
+    Evaluating cosine...
+    Evaluating lime...
+    Evaluating shap...
+    Evaluating accent...
+  ✓ Success - saved to Results/ConsistencyAnalysis/ML1M/VAE/perf4/topk4/metrics.out
+
+[20/20] Running experiment:
+  Performance Level: 4 (Epoch 12, HR=0.1225)
+  Top-K: 5
+  Generating explanations for 100 users...
+    Processing user 0/100...
+  Evaluating explanation methods...
+    Evaluating lxr...
+    Evaluating jaccard...
+    Evaluating cosine...
+    Evaluating lime...
+    Evaluating shap...
+    Evaluating accent...
+  ✓ Success - saved to Results/ConsistencyAnalysis/ML1M/VAE/perf4/topk5/metrics.out
+
+======================================================================
+Completed 20/20 experiments successfully
+======================================================================
+
+
+[SUCCESS] Generated 20 experiment results
+
+======================================================================
+MODE: ANALYZE - Analyzing Consistency
+======================================================================
+
+[Step 1/6] Loading experiment results...
+
+======================================================================
+Loading experiment results from Results/ConsistencyAnalysis/
+======================================================================
+
+  Loading: perf1/topk1
+  Loading: perf1/topk2
+  Loading: perf1/topk3
+  Loading: perf1/topk4
+  Loading: perf1/topk5
+  Loading: perf2/topk1
+  Loading: perf2/topk2
+  Loading: perf2/topk3
+  Loading: perf2/topk4
+  Loading: perf2/topk5
+  Loading: perf3/topk1
+  Loading: perf3/topk2
+  Loading: perf3/topk3
+  Loading: perf3/topk4
+  Loading: perf3/topk5
+  Loading: perf4/topk1
+  Loading: perf4/topk2
+  Loading: perf4/topk3
+  Loading: perf4/topk4
+  Loading: perf4/topk5
+
+Loaded 4 performance levels
+  Performance Level 1: 5 top-k values
+  Performance Level 2: 5 top-k values
+  Performance Level 3: 5 top-k values
+  Performance Level 4: 5 top-k values
+
+[Step 2/6] Comparing consistency across approaches...
+
+======================================================================
+Comparing Consistency Across Progressive Top-K Aggregations
+======================================================================
+
+
+Analyzing metric: POS_at_1
+  Calculating Top-1 only rankings...
+  Calculating Top-1-to-2 (mean) rankings...
+  Calculating Top-1-to-2 (weighted_linear) rankings...
+  Calculating Top-1-to-2 (weighted_exp) rankings...
+  Calculating Top-1-to-3 (mean) rankings...
+  Calculating Top-1-to-3 (weighted_linear) rankings...
+  Calculating Top-1-to-3 (weighted_exp) rankings...
+  Calculating Top-1-to-4 (mean) rankings...
+  Calculating Top-1-to-4 (weighted_linear) rankings...
+  Calculating Top-1-to-4 (weighted_exp) rankings...
+  Calculating Top-1-to-5 (mean) rankings...
+  Calculating Top-1-to-5 (weighted_linear) rankings...
+  Calculating Top-1-to-5 (weighted_exp) rankings...
+
+Analyzing metric: POS_at_5
+  Calculating Top-1 only rankings...
+  Calculating Top-1-to-2 (mean) rankings...
+  Calculating Top-1-to-2 (weighted_linear) rankings...
+  Calculating Top-1-to-2 (weighted_exp) rankings...
+  Calculating Top-1-to-3 (mean) rankings...
+  Calculating Top-1-to-3 (weighted_linear) rankings...
+  Calculating Top-1-to-3 (weighted_exp) rankings...
+  Calculating Top-1-to-4 (mean) rankings...
+  Calculating Top-1-to-4 (weighted_linear) rankings...
+  Calculating Top-1-to-4 (weighted_exp) rankings...
+  Calculating Top-1-to-5 (mean) rankings...
+  Calculating Top-1-to-5 (weighted_linear) rankings...
+  Calculating Top-1-to-5 (weighted_exp) rankings...
+
+Analyzing metric: POS_at_10
+  Calculating Top-1 only rankings...
+  Calculating Top-1-to-2 (mean) rankings...
+  Calculating Top-1-to-2 (weighted_linear) rankings...
+  Calculating Top-1-to-2 (weighted_exp) rankings...
+  Calculating Top-1-to-3 (mean) rankings...
+  Calculating Top-1-to-3 (weighted_linear) rankings...
+  Calculating Top-1-to-3 (weighted_exp) rankings...
+  Calculating Top-1-to-4 (mean) rankings...
+  Calculating Top-1-to-4 (weighted_linear) rankings...
+  Calculating Top-1-to-4 (weighted_exp) rankings...
+  Calculating Top-1-to-5 (mean) rankings...
+  Calculating Top-1-to-5 (weighted_linear) rankings...
+  Calculating Top-1-to-5 (weighted_exp) rankings...
+
+Analyzing metric: NEG_at_1
+  Calculating Top-1 only rankings...
+  Calculating Top-1-to-2 (mean) rankings...
+  Calculating Top-1-to-2 (weighted_linear) rankings...
+  Calculating Top-1-to-2 (weighted_exp) rankings...
+  Calculating Top-1-to-3 (mean) rankings...
+  Calculating Top-1-to-3 (weighted_linear) rankings...
+  Calculating Top-1-to-3 (weighted_exp) rankings...
+  Calculating Top-1-to-4 (mean) rankings...
+  Calculating Top-1-to-4 (weighted_linear) rankings...
+  Calculating Top-1-to-4 (weighted_exp) rankings...
+  Calculating Top-1-to-5 (mean) rankings...
+  Calculating Top-1-to-5 (weighted_linear) rankings...
+  Calculating Top-1-to-5 (weighted_exp) rankings...
+
+Analyzing metric: NEG_at_5
+  Calculating Top-1 only rankings...
+  Calculating Top-1-to-2 (mean) rankings...
+  Calculating Top-1-to-2 (weighted_linear) rankings...
+  Calculating Top-1-to-2 (weighted_exp) rankings...
+  Calculating Top-1-to-3 (mean) rankings...
+  Calculating Top-1-to-3 (weighted_linear) rankings...
+  Calculating Top-1-to-3 (weighted_exp) rankings...
+  Calculating Top-1-to-4 (mean) rankings...
+  Calculating Top-1-to-4 (weighted_linear) rankings...
+  Calculating Top-1-to-4 (weighted_exp) rankings...
+  Calculating Top-1-to-5 (mean) rankings...
+  Calculating Top-1-to-5 (weighted_linear) rankings...
+  Calculating Top-1-to-5 (weighted_exp) rankings...
+
+Analyzing metric: NEG_at_10
+  Calculating Top-1 only rankings...
+  Calculating Top-1-to-2 (mean) rankings...
+  Calculating Top-1-to-2 (weighted_linear) rankings...
+  Calculating Top-1-to-2 (weighted_exp) rankings...
+  Calculating Top-1-to-3 (mean) rankings...
+  Calculating Top-1-to-3 (weighted_linear) rankings...
+  Calculating Top-1-to-3 (weighted_exp) rankings...
+  Calculating Top-1-to-4 (mean) rankings...
+  Calculating Top-1-to-4 (weighted_linear) rankings...
+  Calculating Top-1-to-4 (weighted_exp) rankings...
+  Calculating Top-1-to-5 (mean) rankings...
+  Calculating Top-1-to-5 (weighted_linear) rankings...
+  Calculating Top-1-to-5 (weighted_exp) rankings...
+
+Analyzing metric: NDCG
+  Calculating Top-1 only rankings...
+  Calculating Top-1-to-2 (mean) rankings...
+  Calculating Top-1-to-2 (weighted_linear) rankings...
+  Calculating Top-1-to-2 (weighted_exp) rankings...
+  Calculating Top-1-to-3 (mean) rankings...
+  Calculating Top-1-to-3 (weighted_linear) rankings...
+  Calculating Top-1-to-3 (weighted_exp) rankings...
+  Calculating Top-1-to-4 (mean) rankings...
+  Calculating Top-1-to-4 (weighted_linear) rankings...
+  Calculating Top-1-to-4 (weighted_exp) rankings...
+  Calculating Top-1-to-5 (mean) rankings...
+  Calculating Top-1-to-5 (weighted_linear) rankings...
+  Calculating Top-1-to-5 (weighted_exp) rankings...
+
+Analyzing metric: DEL
+  Calculating Top-1 only rankings...
+  Calculating Top-1-to-2 (mean) rankings...
+  Calculating Top-1-to-2 (weighted_linear) rankings...
+  Calculating Top-1-to-2 (weighted_exp) rankings...
+  Calculating Top-1-to-3 (mean) rankings...
+  Calculating Top-1-to-3 (weighted_linear) rankings...
+  Calculating Top-1-to-3 (weighted_exp) rankings...
+  Calculating Top-1-to-4 (mean) rankings...
+  Calculating Top-1-to-4 (weighted_linear) rankings...
+  Calculating Top-1-to-4 (weighted_exp) rankings...
+  Calculating Top-1-to-5 (mean) rankings...
+  Calculating Top-1-to-5 (weighted_linear) rankings...
+  Calculating Top-1-to-5 (weighted_exp) rankings...
+
+Analyzing metric: INS
+  Calculating Top-1 only rankings...
+  Calculating Top-1-to-2 (mean) rankings...
+  Calculating Top-1-to-2 (weighted_linear) rankings...
+  Calculating Top-1-to-2 (weighted_exp) rankings...
+  Calculating Top-1-to-3 (mean) rankings...
+  Calculating Top-1-to-3 (weighted_linear) rankings...
+  Calculating Top-1-to-3 (weighted_exp) rankings...
+  Calculating Top-1-to-4 (mean) rankings...
+  Calculating Top-1-to-4 (weighted_linear) rankings...
+  Calculating Top-1-to-4 (weighted_exp) rankings...
+  Calculating Top-1-to-5 (mean) rankings...
+  Calculating Top-1-to-5 (weighted_linear) rankings...
+  Calculating Top-1-to-5 (weighted_exp) rankings...
+
+[Step 3/6] Saving results...
+
+Saving consistency scores to CSV...
+  Saved to: Results/ConsistencyAnalysis/ML1M_VAE_consistency_scores.csv
+
+Saving rankings to CSV...
+  Saved to: Results/ConsistencyAnalysis/ML1M_VAE_POS_at_1_rankings.csv
+
+Saving rankings to CSV...
+  Saved to: Results/ConsistencyAnalysis/ML1M_VAE_POS_at_5_rankings.csv
+
+Saving rankings to CSV...
+  Saved to: Results/ConsistencyAnalysis/ML1M_VAE_POS_at_10_rankings.csv
+
+Saving rankings to CSV...
+  Saved to: Results/ConsistencyAnalysis/ML1M_VAE_NEG_at_1_rankings.csv
+
+Saving rankings to CSV...
+  Saved to: Results/ConsistencyAnalysis/ML1M_VAE_NEG_at_5_rankings.csv
+
+Saving rankings to CSV...
+  Saved to: Results/ConsistencyAnalysis/ML1M_VAE_NEG_at_10_rankings.csv
+
+Saving rankings to CSV...
+  Saved to: Results/ConsistencyAnalysis/ML1M_VAE_NDCG_rankings.csv
+
+Saving rankings to CSV...
+  Saved to: Results/ConsistencyAnalysis/ML1M_VAE_DEL_rankings.csv
+
+Saving rankings to CSV...
+  Saved to: Results/ConsistencyAnalysis/ML1M_VAE_INS_rankings.csv
+
+[Step 4/6] Generating visualizations...
+
+Creating consistency comparison plot...
+  Saved to: Results/Figures/consistency_comparison_ML1M_VAE.png
+
+Creating progressive Top-K consistency plot for POS_at_1...
+  Saved to: Results/Figures/progressive_topk_ML1M_VAE_POS_at_1.png
+
+Creating progressive Top-K consistency plot for POS_at_5...
+  Saved to: Results/Figures/progressive_topk_ML1M_VAE_POS_at_5.png
+
+Creating progressive Top-K consistency plot for POS_at_10...
+  Saved to: Results/Figures/progressive_topk_ML1M_VAE_POS_at_10.png
+
+Creating progressive Top-K consistency plot for NEG_at_1...
+  Saved to: Results/Figures/progressive_topk_ML1M_VAE_NEG_at_1.png
+
+Creating progressive Top-K consistency plot for NEG_at_5...
+  Saved to: Results/Figures/progressive_topk_ML1M_VAE_NEG_at_5.png
+
+Creating progressive Top-K consistency plot for NEG_at_10...
+  Saved to: Results/Figures/progressive_topk_ML1M_VAE_NEG_at_10.png
+
+Creating progressive Top-K consistency plot for NDCG...
+  Saved to: Results/Figures/progressive_topk_ML1M_VAE_NDCG.png
+
+Creating progressive Top-K consistency plot for DEL...
+  Saved to: Results/Figures/progressive_topk_ML1M_VAE_DEL.png
+
+Creating progressive Top-K consistency plot for INS...
+  Saved to: Results/Figures/progressive_topk_ML1M_VAE_INS.png
+
+Creating ranking stability heatmap for POS_at_1...
+  Saved to: Results/Figures/ranking_stability_ML1M_VAE_POS_at_1_mean.png
+
+Creating ranking fluctuation line plot for POS_at_1...
+  Saved to: Results/Figures/ranking_fluctuation_ML1M_VAE_POS_at_1_mean.png
+
+Creating ranking stability heatmap for POS_at_1...
+  Saved to: Results/Figures/ranking_stability_ML1M_VAE_POS_at_1_weighted_linear.png
+
+Creating ranking fluctuation line plot for POS_at_1...
+  Saved to: Results/Figures/ranking_fluctuation_ML1M_VAE_POS_at_1_weighted_linear.png
+
+Creating ranking stability heatmap for POS_at_1...
+  Saved to: Results/Figures/ranking_stability_ML1M_VAE_POS_at_1_weighted_exp.png
+
+Creating ranking fluctuation line plot for POS_at_1...
+  Saved to: Results/Figures/ranking_fluctuation_ML1M_VAE_POS_at_1_weighted_exp.png
+
+Creating ranking stability heatmap for POS_at_5...
+  Saved to: Results/Figures/ranking_stability_ML1M_VAE_POS_at_5_mean.png
+
+Creating ranking fluctuation line plot for POS_at_5...
+  Saved to: Results/Figures/ranking_fluctuation_ML1M_VAE_POS_at_5_mean.png
+
+Creating ranking stability heatmap for POS_at_5...
+  Saved to: Results/Figures/ranking_stability_ML1M_VAE_POS_at_5_weighted_linear.png
+
+Creating ranking fluctuation line plot for POS_at_5...
+  Saved to: Results/Figures/ranking_fluctuation_ML1M_VAE_POS_at_5_weighted_linear.png
+
+Creating ranking stability heatmap for POS_at_5...
+  Saved to: Results/Figures/ranking_stability_ML1M_VAE_POS_at_5_weighted_exp.png
+
+Creating ranking fluctuation line plot for POS_at_5...
+  Saved to: Results/Figures/ranking_fluctuation_ML1M_VAE_POS_at_5_weighted_exp.png
+
+Creating ranking stability heatmap for POS_at_10...
+  Saved to: Results/Figures/ranking_stability_ML1M_VAE_POS_at_10_mean.png
+
+Creating ranking fluctuation line plot for POS_at_10...
+  Saved to: Results/Figures/ranking_fluctuation_ML1M_VAE_POS_at_10_mean.png
+
+Creating ranking stability heatmap for POS_at_10...
+  Saved to: Results/Figures/ranking_stability_ML1M_VAE_POS_at_10_weighted_linear.png
+
+Creating ranking fluctuation line plot for POS_at_10...
+  Saved to: Results/Figures/ranking_fluctuation_ML1M_VAE_POS_at_10_weighted_linear.png
+
+Creating ranking stability heatmap for POS_at_10...
+  Saved to: Results/Figures/ranking_stability_ML1M_VAE_POS_at_10_weighted_exp.png
+
+Creating ranking fluctuation line plot for POS_at_10...
+  Saved to: Results/Figures/ranking_fluctuation_ML1M_VAE_POS_at_10_weighted_exp.png
+
+Creating ranking stability heatmap for NEG_at_1...
+  Saved to: Results/Figures/ranking_stability_ML1M_VAE_NEG_at_1_mean.png
+
+Creating ranking fluctuation line plot for NEG_at_1...
+  Saved to: Results/Figures/ranking_fluctuation_ML1M_VAE_NEG_at_1_mean.png
+
+Creating ranking stability heatmap for NEG_at_1...
+  Saved to: Results/Figures/ranking_stability_ML1M_VAE_NEG_at_1_weighted_linear.png
+
+Creating ranking fluctuation line plot for NEG_at_1...
+  Saved to: Results/Figures/ranking_fluctuation_ML1M_VAE_NEG_at_1_weighted_linear.png
+
+Creating ranking stability heatmap for NEG_at_1...
+  Saved to: Results/Figures/ranking_stability_ML1M_VAE_NEG_at_1_weighted_exp.png
+
+Creating ranking fluctuation line plot for NEG_at_1...
+  Saved to: Results/Figures/ranking_fluctuation_ML1M_VAE_NEG_at_1_weighted_exp.png
+
+Creating ranking stability heatmap for NEG_at_5...
+  Saved to: Results/Figures/ranking_stability_ML1M_VAE_NEG_at_5_mean.png
+
+Creating ranking fluctuation line plot for NEG_at_5...
+  Saved to: Results/Figures/ranking_fluctuation_ML1M_VAE_NEG_at_5_mean.png
+
+Creating ranking stability heatmap for NEG_at_5...
+  Saved to: Results/Figures/ranking_stability_ML1M_VAE_NEG_at_5_weighted_linear.png
+
+Creating ranking fluctuation line plot for NEG_at_5...
+  Saved to: Results/Figures/ranking_fluctuation_ML1M_VAE_NEG_at_5_weighted_linear.png
+
+Creating ranking stability heatmap for NEG_at_5...
+  Saved to: Results/Figures/ranking_stability_ML1M_VAE_NEG_at_5_weighted_exp.png
+
+Creating ranking fluctuation line plot for NEG_at_5...
+  Saved to: Results/Figures/ranking_fluctuation_ML1M_VAE_NEG_at_5_weighted_exp.png
+
+Creating ranking stability heatmap for NEG_at_10...
+  Saved to: Results/Figures/ranking_stability_ML1M_VAE_NEG_at_10_mean.png
+
+Creating ranking fluctuation line plot for NEG_at_10...
+  Saved to: Results/Figures/ranking_fluctuation_ML1M_VAE_NEG_at_10_mean.png
+
+Creating ranking stability heatmap for NEG_at_10...
+  Saved to: Results/Figures/ranking_stability_ML1M_VAE_NEG_at_10_weighted_linear.png
+
+Creating ranking fluctuation line plot for NEG_at_10...
+  Saved to: Results/Figures/ranking_fluctuation_ML1M_VAE_NEG_at_10_weighted_linear.png
+
+Creating ranking stability heatmap for NEG_at_10...
+  Saved to: Results/Figures/ranking_stability_ML1M_VAE_NEG_at_10_weighted_exp.png
+
+Creating ranking fluctuation line plot for NEG_at_10...
+  Saved to: Results/Figures/ranking_fluctuation_ML1M_VAE_NEG_at_10_weighted_exp.png
+
+Creating ranking stability heatmap for NDCG...
+  Saved to: Results/Figures/ranking_stability_ML1M_VAE_NDCG_mean.png
+
+Creating ranking fluctuation line plot for NDCG...
+  Saved to: Results/Figures/ranking_fluctuation_ML1M_VAE_NDCG_mean.png
+
+Creating ranking stability heatmap for NDCG...
+  Saved to: Results/Figures/ranking_stability_ML1M_VAE_NDCG_weighted_linear.png
+
+Creating ranking fluctuation line plot for NDCG...
+  Saved to: Results/Figures/ranking_fluctuation_ML1M_VAE_NDCG_weighted_linear.png
+
+Creating ranking stability heatmap for NDCG...
+  Saved to: Results/Figures/ranking_stability_ML1M_VAE_NDCG_weighted_exp.png
+
+Creating ranking fluctuation line plot for NDCG...
+  Saved to: Results/Figures/ranking_fluctuation_ML1M_VAE_NDCG_weighted_exp.png
+
+Creating ranking stability heatmap for DEL...
+  Saved to: Results/Figures/ranking_stability_ML1M_VAE_DEL_mean.png
+
+Creating ranking fluctuation line plot for DEL...
+  Saved to: Results/Figures/ranking_fluctuation_ML1M_VAE_DEL_mean.png
+
+Creating ranking stability heatmap for DEL...
+  Saved to: Results/Figures/ranking_stability_ML1M_VAE_DEL_weighted_linear.png
+
+Creating ranking fluctuation line plot for DEL...
+  Saved to: Results/Figures/ranking_fluctuation_ML1M_VAE_DEL_weighted_linear.png
+
+Creating ranking stability heatmap for DEL...
+  Saved to: Results/Figures/ranking_stability_ML1M_VAE_DEL_weighted_exp.png
+
+Creating ranking fluctuation line plot for DEL...
+  Saved to: Results/Figures/ranking_fluctuation_ML1M_VAE_DEL_weighted_exp.png
+
+Creating ranking stability heatmap for INS...
+  Saved to: Results/Figures/ranking_stability_ML1M_VAE_INS_mean.png
+
+Creating ranking fluctuation line plot for INS...
+  Saved to: Results/Figures/ranking_fluctuation_ML1M_VAE_INS_mean.png
+
+Creating ranking stability heatmap for INS...
+  Saved to: Results/Figures/ranking_stability_ML1M_VAE_INS_weighted_linear.png
+
+Creating ranking fluctuation line plot for INS...
+  Saved to: Results/Figures/ranking_fluctuation_ML1M_VAE_INS_weighted_linear.png
+
+Creating ranking stability heatmap for INS...
+  Saved to: Results/Figures/ranking_stability_ML1M_VAE_INS_weighted_exp.png
+
+Creating ranking fluctuation line plot for INS...
+  Saved to: Results/Figures/ranking_fluctuation_ML1M_VAE_INS_weighted_exp.png
+
+[Step 5/6] Generating summary report...
+
+======================================================================
+PROGRESSIVE TOP-K AGGREGATION ANALYSIS: ML1M / VAE
+======================================================================
+
+
+======================================================================
+Metric: POS_at_1
+======================================================================
+
+Top-1 Only (Baseline):
+  Spearman ρ:        0.0000
+  Rank Variance:     2.1875
+  Stability Index:   0.1111
+
+--- Top-1-to-2 Aggregations ---
+
+  Aggregation: mean
+    Spearman ρ:        0.7143 (+0.0%)
+    Rank Variance:     0.6250 (+71.4% reduction)
+    Stability Index:   0.2222 (+100.0%)
+
+  Aggregation: weighted_linear
+    Spearman ρ:        0.0857 (+0.0%)
+    Rank Variance:     2.0000 (+8.6% reduction)
+    Stability Index:   0.2778 (+150.0%)
+
+  Aggregation: weighted_exp
+    Spearman ρ:        0.1333 (+0.0%)
+    Rank Variance:     1.8958 (+13.3% reduction)
+    Stability Index:   0.1667 (+50.0%)
+
+--- Top-1-to-3 Aggregations ---
+
+  Aggregation: mean
+    Spearman ρ:        0.6857 (+0.0%)
+    Rank Variance:     0.6875 (+68.6% reduction)
+    Stability Index:   0.3333 (+200.0%)
+
+  Aggregation: weighted_linear
+    Spearman ρ:        0.1619 (+0.0%)
+    Rank Variance:     1.8333 (+16.2% reduction)
+    Stability Index:   0.4444 (+300.0%)
+
+  Aggregation: weighted_exp
+    Spearman ρ:        0.3238 (+0.0%)
+    Rank Variance:     1.4792 (+32.4% reduction)
+    Stability Index:   0.4444 (+300.0%)
+
+--- Top-1-to-4 Aggregations ---
+
+  Aggregation: mean
+    Spearman ρ:        0.6667 (+0.0%)
+    Rank Variance:     0.7292 (+66.7% reduction)
+    Stability Index:   0.1667 (+50.0%)
+
+  Aggregation: weighted_linear
+    Spearman ρ:        0.1619 (+0.0%)
+    Rank Variance:     1.8333 (+16.2% reduction)
+    Stability Index:   0.4444 (+300.0%)
+
+  Aggregation: weighted_exp
+    Spearman ρ:        0.3238 (+0.0%)
+    Rank Variance:     1.4792 (+32.4% reduction)
+    Stability Index:   0.4444 (+300.0%)
+
+--- Top-1-to-5 Aggregations ---
+
+  Aggregation: mean
+    Spearman ρ:        0.6762 (+0.0%)
+    Rank Variance:     0.7083 (+67.6% reduction)
+    Stability Index:   0.3889 (+250.0%)
+
+  Aggregation: weighted_linear
+    Spearman ρ:        0.1810 (+0.0%)
+    Rank Variance:     1.7917 (+18.1% reduction)
+    Stability Index:   0.3889 (+250.0%)
+
+  Aggregation: weighted_exp
+    Spearman ρ:        0.3238 (+0.0%)
+    Rank Variance:     1.4792 (+32.4% reduction)
+    Stability Index:   0.3889 (+250.0%)
+
+======================================================================
+Metric: POS_at_5
+======================================================================
+
+Top-1 Only (Baseline):
+  Spearman ρ:        -0.0952
+  Rank Variance:     2.3958
+  Stability Index:   0.0556
+
+--- Top-1-to-2 Aggregations ---
+
+  Aggregation: mean
+    Spearman ρ:        -0.1714 (+0.0%)
+    Rank Variance:     2.5625 (-7.0% reduction)
+    Stability Index:   0.2778 (+400.0%)
+
+  Aggregation: weighted_linear
+    Spearman ρ:        -0.1714 (+0.0%)
+    Rank Variance:     2.5625 (-7.0% reduction)
+    Stability Index:   0.1111 (+100.0%)
+
+  Aggregation: weighted_exp
+    Spearman ρ:        -0.1619 (+0.0%)
+    Rank Variance:     2.5417 (-6.1% reduction)
+    Stability Index:   0.1667 (+200.0%)
+
+--- Top-1-to-3 Aggregations ---
+
+  Aggregation: mean
+    Spearman ρ:        -0.2286 (+0.0%)
+    Rank Variance:     2.6875 (-12.2% reduction)
+    Stability Index:   0.1667 (+200.0%)
+
+  Aggregation: weighted_linear
+    Spearman ρ:        -0.1429 (+0.0%)
+    Rank Variance:     2.5000 (-4.3% reduction)
+    Stability Index:   0.1111 (+100.0%)
+
+  Aggregation: weighted_exp
+    Spearman ρ:        -0.1524 (+0.0%)
+    Rank Variance:     2.5208 (-5.2% reduction)
+    Stability Index:   0.1111 (+100.0%)
+
+--- Top-1-to-4 Aggregations ---
+
+  Aggregation: mean
+    Spearman ρ:        0.0667 (+0.0%)
+    Rank Variance:     2.0417 (+14.8% reduction)
+    Stability Index:   0.1667 (+200.0%)
+
+  Aggregation: weighted_linear
+    Spearman ρ:        0.1048 (+0.0%)
+    Rank Variance:     1.9583 (+18.3% reduction)
+    Stability Index:   0.1111 (+100.0%)
+
+  Aggregation: weighted_exp
+    Spearman ρ:        0.1238 (+0.0%)
+    Rank Variance:     1.9167 (+20.0% reduction)
+    Stability Index:   0.2222 (+300.0%)
+
+--- Top-1-to-5 Aggregations ---
+
+  Aggregation: mean
+    Spearman ρ:        0.1524 (+0.0%)
+    Rank Variance:     1.8542 (+22.6% reduction)
+    Stability Index:   0.0556 (+0.0%)
+
+  Aggregation: weighted_linear
+    Spearman ρ:        0.1524 (+0.0%)
+    Rank Variance:     1.8542 (+22.6% reduction)
+    Stability Index:   0.2222 (+300.0%)
+
+  Aggregation: weighted_exp
+    Spearman ρ:        0.1524 (+0.0%)
+    Rank Variance:     1.8542 (+22.6% reduction)
+    Stability Index:   0.1111 (+100.0%)
+
+======================================================================
+Metric: POS_at_10
+======================================================================
+
+Top-1 Only (Baseline):
+  Spearman ρ:        0.5714
+  Rank Variance:     0.9375
+  Stability Index:   0.4444
+
+--- Top-1-to-2 Aggregations ---
+
+  Aggregation: mean
+    Spearman ρ:        0.4286 (-25.0%)
+    Rank Variance:     1.2500 (-33.3% reduction)
+    Stability Index:   0.3889 (-12.5%)
+
+  Aggregation: weighted_linear
+    Spearman ρ:        0.4571 (-20.0%)
+    Rank Variance:     1.1875 (-26.7% reduction)
+    Stability Index:   0.5000 (+12.5%)
+
+  Aggregation: weighted_exp
+    Spearman ρ:        0.4286 (-25.0%)
+    Rank Variance:     1.2500 (-33.3% reduction)
+    Stability Index:   0.3889 (-12.5%)
+
+--- Top-1-to-3 Aggregations ---
+
+  Aggregation: mean
+    Spearman ρ:        -0.1238 (-121.7%)
+    Rank Variance:     2.4583 (-162.2% reduction)
+    Stability Index:   0.2778 (-37.5%)
+
+  Aggregation: weighted_linear
+    Spearman ρ:        -0.0857 (-115.0%)
+    Rank Variance:     2.3750 (-153.3% reduction)
+    Stability Index:   0.0556 (-87.5%)
+
+  Aggregation: weighted_exp
+    Spearman ρ:        -0.0857 (-115.0%)
+    Rank Variance:     2.3750 (-153.3% reduction)
+    Stability Index:   0.1111 (-75.0%)
+
+--- Top-1-to-4 Aggregations ---
+
+  Aggregation: mean
+    Spearman ρ:        -0.1238 (-121.7%)
+    Rank Variance:     2.4583 (-162.2% reduction)
+    Stability Index:   0.2778 (-37.5%)
+
+  Aggregation: weighted_linear
+    Spearman ρ:        -0.0857 (-115.0%)
+    Rank Variance:     2.3750 (-153.3% reduction)
+    Stability Index:   0.1111 (-75.0%)
+
+  Aggregation: weighted_exp
+    Spearman ρ:        -0.0952 (-116.7%)
+    Rank Variance:     2.3958 (-155.6% reduction)
+    Stability Index:   0.1111 (-75.0%)
+
+--- Top-1-to-5 Aggregations ---
+
+  Aggregation: mean
+    Spearman ρ:        0.0000 (-100.0%)
+    Rank Variance:     2.1875 (-133.3% reduction)
+    Stability Index:   0.2778 (-37.5%)
+
+  Aggregation: weighted_linear
+    Spearman ρ:        0.0476 (-91.7%)
+    Rank Variance:     2.0833 (-122.2% reduction)
+    Stability Index:   0.2222 (-50.0%)
+
+  Aggregation: weighted_exp
+    Spearman ρ:        0.0190 (-96.7%)
+    Rank Variance:     2.1458 (-128.9% reduction)
+    Stability Index:   0.2778 (-37.5%)
+
+======================================================================
+Metric: NEG_at_1
+======================================================================
+
+Top-1 Only (Baseline):
+  Spearman ρ:        0.6190
+  Rank Variance:     0.8333
+  Stability Index:   0.6667
+
+--- Top-1-to-2 Aggregations ---
+
+  Aggregation: mean
+    Spearman ρ:        0.0381 (-93.8%)
+    Rank Variance:     2.1042 (-152.5% reduction)
+    Stability Index:   0.5000 (-25.0%)
+
+  Aggregation: weighted_linear
+    Spearman ρ:        0.5048 (-18.5%)
+    Rank Variance:     1.0833 (-30.0% reduction)
+    Stability Index:   0.4444 (-33.3%)
+
+  Aggregation: weighted_exp
+    Spearman ρ:        0.4857 (-21.5%)
+    Rank Variance:     1.1250 (-35.0% reduction)
+    Stability Index:   0.3889 (-41.7%)
+
+--- Top-1-to-3 Aggregations ---
+
+  Aggregation: mean
+    Spearman ρ:        0.0286 (-95.4%)
+    Rank Variance:     2.1250 (-155.0% reduction)
+    Stability Index:   0.1111 (-83.3%)
+
+  Aggregation: weighted_linear
+    Spearman ρ:        0.4857 (-21.5%)
+    Rank Variance:     1.1250 (-35.0% reduction)
+    Stability Index:   0.3333 (-50.0%)
+
+  Aggregation: weighted_exp
+    Spearman ρ:        0.5238 (-15.4%)
+    Rank Variance:     1.0417 (-25.0% reduction)
+    Stability Index:   0.4444 (-33.3%)
+
+--- Top-1-to-4 Aggregations ---
+
+  Aggregation: mean
+    Spearman ρ:        0.0381 (-93.8%)
+    Rank Variance:     2.1042 (-152.5% reduction)
+    Stability Index:   0.2222 (-66.7%)
+
+  Aggregation: weighted_linear
+    Spearman ρ:        0.4857 (-21.5%)
+    Rank Variance:     1.1250 (-35.0% reduction)
+    Stability Index:   0.3333 (-50.0%)
+
+  Aggregation: weighted_exp
+    Spearman ρ:        0.5238 (-15.4%)
+    Rank Variance:     1.0417 (-25.0% reduction)
+    Stability Index:   0.4444 (-33.3%)
+
+--- Top-1-to-5 Aggregations ---
+
+  Aggregation: mean
+    Spearman ρ:        0.0381 (-93.8%)
+    Rank Variance:     2.1042 (-152.5% reduction)
+    Stability Index:   0.2222 (-66.7%)
+
+  Aggregation: weighted_linear
+    Spearman ρ:        0.4667 (-24.6%)
+    Rank Variance:     1.1667 (-40.0% reduction)
+    Stability Index:   0.4444 (-33.3%)
+
+  Aggregation: weighted_exp
+    Spearman ρ:        0.5238 (-15.4%)
+    Rank Variance:     1.0417 (-25.0% reduction)
+    Stability Index:   0.4444 (-33.3%)
+
+======================================================================
+Metric: NEG_at_5
+======================================================================
+
+Top-1 Only (Baseline):
+  Spearman ρ:        0.4476
+  Rank Variance:     1.2083
+  Stability Index:   0.2778
+
+--- Top-1-to-2 Aggregations ---
+
+  Aggregation: mean
+    Spearman ρ:        0.1619 (-63.8%)
+    Rank Variance:     1.8333 (-51.7% reduction)
+    Stability Index:   0.2222 (-20.0%)
+
+  Aggregation: weighted_linear
+    Spearman ρ:        0.1905 (-57.4%)
+    Rank Variance:     1.7708 (-46.6% reduction)
+    Stability Index:   0.2778 (+0.0%)
+
+  Aggregation: weighted_exp
+    Spearman ρ:        0.2000 (-55.3%)
+    Rank Variance:     1.7500 (-44.8% reduction)
+    Stability Index:   0.2778 (+0.0%)
+
+--- Top-1-to-3 Aggregations ---
+
+  Aggregation: mean
+    Spearman ρ:        0.4857 (+8.5%)
+    Rank Variance:     1.1250 (+6.9% reduction)
+    Stability Index:   0.3889 (+40.0%)
+
+  Aggregation: weighted_linear
+    Spearman ρ:        0.3048 (-31.9%)
+    Rank Variance:     1.5208 (-25.9% reduction)
+    Stability Index:   0.1111 (-60.0%)
+
+  Aggregation: weighted_exp
+    Spearman ρ:        0.3714 (-17.0%)
+    Rank Variance:     1.3750 (-13.8% reduction)
+    Stability Index:   0.1667 (-40.0%)
+
+--- Top-1-to-4 Aggregations ---
+
+  Aggregation: mean
+    Spearman ρ:        0.6952 (+55.3%)
+    Rank Variance:     0.6667 (+44.8% reduction)
+    Stability Index:   0.3889 (+40.0%)
+
+  Aggregation: weighted_linear
+    Spearman ρ:        0.6381 (+42.6%)
+    Rank Variance:     0.7917 (+34.5% reduction)
+    Stability Index:   0.2778 (+0.0%)
+
+  Aggregation: weighted_exp
+    Spearman ρ:        0.6381 (+42.6%)
+    Rank Variance:     0.7917 (+34.5% reduction)
+    Stability Index:   0.2778 (+0.0%)
+
+--- Top-1-to-5 Aggregations ---
+
+  Aggregation: mean
+    Spearman ρ:        0.4857 (+8.5%)
+    Rank Variance:     1.1250 (+6.9% reduction)
+    Stability Index:   0.3333 (+20.0%)
+
+  Aggregation: weighted_linear
+    Spearman ρ:        0.4857 (+8.5%)
+    Rank Variance:     1.1250 (+6.9% reduction)
+    Stability Index:   0.3333 (+20.0%)
+
+  Aggregation: weighted_exp
+    Spearman ρ:        0.4857 (+8.5%)
+    Rank Variance:     1.1250 (+6.9% reduction)
+    Stability Index:   0.3333 (+20.0%)
+
+======================================================================
+Metric: NEG_at_10
+======================================================================
+
+Top-1 Only (Baseline):
+  Spearman ρ:        0.9714
+  Rank Variance:     0.0625
+  Stability Index:   0.7778
+
+--- Top-1-to-2 Aggregations ---
+
+  Aggregation: mean
+    Spearman ρ:        0.8857 (-8.8%)
+    Rank Variance:     0.2500 (-300.0% reduction)
+    Stability Index:   0.5556 (-28.6%)
+
+  Aggregation: weighted_linear
+    Spearman ρ:        0.8857 (-8.8%)
+    Rank Variance:     0.2500 (-300.0% reduction)
+    Stability Index:   0.5556 (-28.6%)
+
+  Aggregation: weighted_exp
+    Spearman ρ:        0.8857 (-8.8%)
+    Rank Variance:     0.2500 (-300.0% reduction)
+    Stability Index:   0.5556 (-28.6%)
+
+--- Top-1-to-3 Aggregations ---
+
+  Aggregation: mean
+    Spearman ρ:        0.2571 (-73.5%)
+    Rank Variance:     1.6250 (-2500.0% reduction)
+    Stability Index:   0.2778 (-64.3%)
+
+  Aggregation: weighted_linear
+    Spearman ρ:        0.2571 (-73.5%)
+    Rank Variance:     1.6250 (-2500.0% reduction)
+    Stability Index:   0.2778 (-64.3%)
+
+  Aggregation: weighted_exp
+    Spearman ρ:        0.2571 (-73.5%)
+    Rank Variance:     1.6250 (-2500.0% reduction)
+    Stability Index:   0.2778 (-64.3%)
+
+--- Top-1-to-4 Aggregations ---
+
+  Aggregation: mean
+    Spearman ρ:        0.2286 (-76.5%)
+    Rank Variance:     1.6875 (-2600.0% reduction)
+    Stability Index:   0.2222 (-71.4%)
+
+  Aggregation: weighted_linear
+    Spearman ρ:        0.2190 (-77.5%)
+    Rank Variance:     1.7083 (-2633.3% reduction)
+    Stability Index:   0.2778 (-64.3%)
+
+  Aggregation: weighted_exp
+    Spearman ρ:        0.2190 (-77.5%)
+    Rank Variance:     1.7083 (-2633.3% reduction)
+    Stability Index:   0.1667 (-78.6%)
+
+--- Top-1-to-5 Aggregations ---
+
+  Aggregation: mean
+    Spearman ρ:        0.6000 (-38.2%)
+    Rank Variance:     0.8750 (-1300.0% reduction)
+    Stability Index:   0.3889 (-50.0%)
+
+  Aggregation: weighted_linear
+    Spearman ρ:        0.5048 (-48.0%)
+    Rank Variance:     1.0833 (-1633.3% reduction)
+    Stability Index:   0.2222 (-71.4%)
+
+  Aggregation: weighted_exp
+    Spearman ρ:        0.5048 (-48.0%)
+    Rank Variance:     1.0833 (-1633.3% reduction)
+    Stability Index:   0.2778 (-64.3%)
+
+======================================================================
+Metric: NDCG
+======================================================================
+
+Top-1 Only (Baseline):
+  Spearman ρ:        0.0762
+  Rank Variance:     2.0208
+  Stability Index:   0.1667
+
+--- Top-1-to-2 Aggregations ---
+
+  Aggregation: mean
+    Spearman ρ:        0.4381 (+475.0%)
+    Rank Variance:     1.2292 (+39.2% reduction)
+    Stability Index:   0.1667 (+0.0%)
+
+  Aggregation: weighted_linear
+    Spearman ρ:        0.0952 (+25.0%)
+    Rank Variance:     1.9792 (+2.1% reduction)
+    Stability Index:   0.1667 (+0.0%)
+
+  Aggregation: weighted_exp
+    Spearman ρ:        0.0952 (+25.0%)
+    Rank Variance:     1.9792 (+2.1% reduction)
+    Stability Index:   0.0556 (-66.7%)
+
+--- Top-1-to-3 Aggregations ---
+
+  Aggregation: mean
+    Spearman ρ:        0.6381 (+737.5%)
+    Rank Variance:     0.7917 (+60.8% reduction)
+    Stability Index:   0.3889 (+133.3%)
+
+  Aggregation: weighted_linear
+    Spearman ρ:        0.2190 (+187.5%)
+    Rank Variance:     1.7083 (+15.5% reduction)
+    Stability Index:   0.5000 (+200.0%)
+
+  Aggregation: weighted_exp
+    Spearman ρ:        0.2762 (+262.5%)
+    Rank Variance:     1.5833 (+21.6% reduction)
+    Stability Index:   0.4444 (+166.7%)
+
+--- Top-1-to-4 Aggregations ---
+
+  Aggregation: mean
+    Spearman ρ:        0.7143 (+837.5%)
+    Rank Variance:     0.6250 (+69.1% reduction)
+    Stability Index:   0.5000 (+200.0%)
+
+  Aggregation: weighted_linear
+    Spearman ρ:        0.2762 (+262.5%)
+    Rank Variance:     1.5833 (+21.6% reduction)
+    Stability Index:   0.4444 (+166.7%)
+
+  Aggregation: weighted_exp
+    Spearman ρ:        0.3429 (+350.0%)
+    Rank Variance:     1.4375 (+28.9% reduction)
+    Stability Index:   0.1111 (-33.3%)
+
+--- Top-1-to-5 Aggregations ---
+
+  Aggregation: mean
+    Spearman ρ:        0.7714 (+912.5%)
+    Rank Variance:     0.5000 (+75.3% reduction)
+    Stability Index:   0.4444 (+166.7%)
+
+  Aggregation: weighted_linear
+    Spearman ρ:        0.3143 (+312.5%)
+    Rank Variance:     1.5000 (+25.8% reduction)
+    Stability Index:   0.3333 (+100.0%)
+
+  Aggregation: weighted_exp
+    Spearman ρ:        0.3429 (+350.0%)
+    Rank Variance:     1.4375 (+28.9% reduction)
+    Stability Index:   0.1111 (-33.3%)
+
+======================================================================
+Metric: DEL
+======================================================================
+
+Top-1 Only (Baseline):
+  Spearman ρ:        0.8857
+  Rank Variance:     0.2500
+  Stability Index:   0.7222
+
+--- Top-1-to-2 Aggregations ---
+
+  Aggregation: mean
+    Spearman ρ:        0.8857 (+0.0%)
+    Rank Variance:     0.2500 (+0.0% reduction)
+    Stability Index:   0.7222 (+0.0%)
+
+  Aggregation: weighted_linear
+    Spearman ρ:        0.8857 (+0.0%)
+    Rank Variance:     0.2500 (+0.0% reduction)
+    Stability Index:   0.7222 (+0.0%)
+
+  Aggregation: weighted_exp
+    Spearman ρ:        0.8857 (+0.0%)
+    Rank Variance:     0.2500 (+0.0% reduction)
+    Stability Index:   0.7222 (+0.0%)
+
+--- Top-1-to-3 Aggregations ---
+
+  Aggregation: mean
+    Spearman ρ:        0.9143 (+3.2%)
+    Rank Variance:     0.1875 (+25.0% reduction)
+    Stability Index:   0.8333 (+15.4%)
+
+  Aggregation: weighted_linear
+    Spearman ρ:        0.9143 (+3.2%)
+    Rank Variance:     0.1875 (+25.0% reduction)
+    Stability Index:   0.8333 (+15.4%)
+
+  Aggregation: weighted_exp
+    Spearman ρ:        0.9143 (+3.2%)
+    Rank Variance:     0.1875 (+25.0% reduction)
+    Stability Index:   0.8333 (+15.4%)
+
+--- Top-1-to-4 Aggregations ---
+
+  Aggregation: mean
+    Spearman ρ:        0.9143 (+3.2%)
+    Rank Variance:     0.1875 (+25.0% reduction)
+    Stability Index:   0.8333 (+15.4%)
+
+  Aggregation: weighted_linear
+    Spearman ρ:        0.9143 (+3.2%)
+    Rank Variance:     0.1875 (+25.0% reduction)
+    Stability Index:   0.8333 (+15.4%)
+
+  Aggregation: weighted_exp
+    Spearman ρ:        0.9143 (+3.2%)
+    Rank Variance:     0.1875 (+25.0% reduction)
+    Stability Index:   0.8333 (+15.4%)
+
+--- Top-1-to-5 Aggregations ---
+
+  Aggregation: mean
+    Spearman ρ:        0.9143 (+3.2%)
+    Rank Variance:     0.1875 (+25.0% reduction)
+    Stability Index:   0.8333 (+15.4%)
+
+  Aggregation: weighted_linear
+    Spearman ρ:        0.9143 (+3.2%)
+    Rank Variance:     0.1875 (+25.0% reduction)
+    Stability Index:   0.8333 (+15.4%)
+
+  Aggregation: weighted_exp
+    Spearman ρ:        0.9143 (+3.2%)
+    Rank Variance:     0.1875 (+25.0% reduction)
+    Stability Index:   0.8333 (+15.4%)
+
+======================================================================
+Metric: INS
+======================================================================
+
+Top-1 Only (Baseline):
+  Spearman ρ:        0.8000
+  Rank Variance:     0.4375
+  Stability Index:   0.6667
+
+--- Top-1-to-2 Aggregations ---
+
+  Aggregation: mean
+    Spearman ρ:        0.8286 (+3.6%)
+    Rank Variance:     0.3750 (+14.3% reduction)
+    Stability Index:   0.5000 (-25.0%)
+
+  Aggregation: weighted_linear
+    Spearman ρ:        0.8286 (+3.6%)
+    Rank Variance:     0.3750 (+14.3% reduction)
+    Stability Index:   0.5000 (-25.0%)
+
+  Aggregation: weighted_exp
+    Spearman ρ:        0.8286 (+3.6%)
+    Rank Variance:     0.3750 (+14.3% reduction)
+    Stability Index:   0.5000 (-25.0%)
+
+--- Top-1-to-3 Aggregations ---
+
+  Aggregation: mean
+    Spearman ρ:        0.8000 (+0.0%)
+    Rank Variance:     0.4375 (+0.0% reduction)
+    Stability Index:   0.6667 (+0.0%)
+
+  Aggregation: weighted_linear
+    Spearman ρ:        0.8286 (+3.6%)
+    Rank Variance:     0.3750 (+14.3% reduction)
+    Stability Index:   0.5556 (-16.7%)
+
+  Aggregation: weighted_exp
+    Spearman ρ:        0.8286 (+3.6%)
+    Rank Variance:     0.3750 (+14.3% reduction)
+    Stability Index:   0.5556 (-16.7%)
+
+--- Top-1-to-4 Aggregations ---
+
+  Aggregation: mean
+    Spearman ρ:        0.8000 (+0.0%)
+    Rank Variance:     0.4375 (+0.0% reduction)
+    Stability Index:   0.6667 (+0.0%)
+
+  Aggregation: weighted_linear
+    Spearman ρ:        0.8286 (+3.6%)
+    Rank Variance:     0.3750 (+14.3% reduction)
+    Stability Index:   0.5556 (-16.7%)
+
+  Aggregation: weighted_exp
+    Spearman ρ:        0.8286 (+3.6%)
+    Rank Variance:     0.3750 (+14.3% reduction)
+    Stability Index:   0.5556 (-16.7%)
+
+--- Top-1-to-5 Aggregations ---
+
+  Aggregation: mean
+    Spearman ρ:        0.8000 (+0.0%)
+    Rank Variance:     0.4375 (+0.0% reduction)
+    Stability Index:   0.6667 (+0.0%)
+
+  Aggregation: weighted_linear
+    Spearman ρ:        0.8000 (+0.0%)
+    Rank Variance:     0.4375 (+0.0% reduction)
+    Stability Index:   0.6667 (+0.0%)
+
+  Aggregation: weighted_exp
+    Spearman ρ:        0.8000 (+0.0%)
+    Rank Variance:     0.4375 (+0.0% reduction)
+    Stability Index:   0.6667 (+0.0%)
+
+======================================================================
+
+[Step 6/6] Saving JSON summary...
+  Saved to: Results/ConsistencyAnalysis/ML1M_VAE_summary.json
+
+======================================================================
+ANALYSIS COMPLETE
+======================================================================
+

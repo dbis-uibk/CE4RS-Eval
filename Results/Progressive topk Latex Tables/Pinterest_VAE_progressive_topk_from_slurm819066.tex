@@ -1,0 +1,67 @@
+\documentclass{article}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{rotating}
+\usepackage{geometry}
+\usepackage[normalem]{ulem}
+\geometry{landscape, margin=0.3in}
+
+\begin{document}
+
+\begin{table}[htbp]
+\centering
+\caption{Progressive Top-K Aggregation Analysis for Pinterest Dataset with VAE Model}
+\label{tab:pinterest_vae_progressive_topk}
+\scriptsize
+\begin{tabular}{@{}llrr|rr|rr|rr|rr@{}}
+\toprule
+\multirow{2}{*}{\textbf{Metric}} & \multirow{2}{*}{\textbf{Aggregation}} & \multicolumn{2}{c|}{\textbf{Top-1 Only}} & \multicolumn{2}{c|}{\textbf{Top-1-to-2}} & \multicolumn{2}{c|}{\textbf{Top-1-to-3}} & \multicolumn{2}{c|}{\textbf{Top-1-to-4}} & \multicolumn{2}{c}{\textbf{Top-1-to-5}} \\
+\cmidrule(lr){3-4} \cmidrule(lr){5-6} \cmidrule(lr){7-8} \cmidrule(lr){9-10} \cmidrule(lr){11-12}
+& & $\rho$ & RV & $\rho$ & RV & $\rho$ & RV & $\rho$ & RV & $\rho$ & RV \\
+\midrule
+
+\multirow{4}{*}{\textbf{POS@5}} 
+& Baseline & 0.933 & 0.146 & & & & & & & & \\
+& Mean & & & 0.791 & 0.458 & 0.791 & 0.458 & \textbf{0.943} & \textbf{0.125} & \uline{0.971} & \uline{0.063} \\
+& Weighted Linear & & & \uline{0.838} & \uline{0.354} & 0.791 & 0.458 & 0.791 & 0.458 & 0.933 & 0.146 \\
+& Weighted Exp & & & 0.800 & 0.438 & 0.791 & 0.458 & 0.838 & 0.354 & \textbf{0.971} & \textbf{0.063} \\
+\midrule
+
+\multirow{4}{*}{\textbf{POS@10}} 
+& Baseline & 0.876 & 0.271 & & & & & & & & \\
+& Mean & & & 0.876 & 0.271 & 0.886 & 0.250 & 0.886 & 0.250 & 0.857 & 0.313 \\
+& Weighted Linear & & & \textbf{0.962} & \textbf{0.083} & \uline{0.886} & \uline{0.250} & \uline{0.886} & \uline{0.250} & \uline{0.886} & \uline{0.250} \\
+& Weighted Exp & & & \uline{0.914} & \uline{0.188} & 0.886 & 0.250 & 0.886 & 0.250 & 0.886 & 0.250 \\
+\midrule
+
+\multirow{4}{*}{\textbf{NEG@5}} 
+& Baseline & 0.743 & 0.563 & & & & & & & & \\
+& Mean & & & \textbf{0.933} & \textbf{0.146} & 0.733 & 0.583 & 0.771 & 0.500 & 0.819 & 0.396 \\
+& Weighted Linear & & & \uline{0.876} & \uline{0.271} & 0.743 & 0.563 & \uline{0.857} & \uline{0.313} & 0.848 & 0.333 \\
+& Weighted Exp & & & 0.876 & 0.271 & 0.743 & 0.563 & 0.848 & 0.333 & \textbf{0.933} & \textbf{0.146} \\
+\midrule
+
+\multirow{4}{*}{\textbf{NEG@10}} 
+& Baseline & 0.762 & 0.521 & & & & & & & & \\
+& Mean & & & 0.848 & 0.333 & 0.733 & 0.583 & \uline{0.876} & \uline{0.271} & \textbf{0.943} & \textbf{0.125} \\
+& Weighted Linear & & & \uline{0.791} & \uline{0.458} & 0.791 & 0.458 & 0.791 & 0.458 & 0.800 & 0.438 \\
+& Weighted Exp & & & 0.791 & 0.458 & 0.791 & 0.458 & 0.762 & 0.521 & 0.819 & 0.396 \\
+\midrule
+
+\multirow{4}{*}{\textbf{NDCG}} 
+& Baseline & 0.810 & 0.417 & & & & & & & & \\
+& Mean & & & 0.857 & 0.313 & \textbf{0.886} & \textbf{0.250} & 0.857 & 0.313 & 0.829 & 0.375 \\
+& Weighted Linear & & & 0.848 & 0.333 & 0.857 & 0.313 & 0.857 & 0.313 & 0.857 & 0.313 \\
+& Weighted Exp & & & \uline{0.857} & \uline{0.313} & 0.857 & 0.313 & \uline{0.857} & \uline{0.313} & \uline{0.857} & \uline{0.313} \\
+
+\bottomrule
+\end{tabular}
+\begin{flushleft}
+\textbf{Note:} $\rho$ = Spearman correlation, RV = Rank Variance. \\
+\textbf{Best values are in bold}, \uline{second-best values are underlined}. Baseline represents Top-1 only performance. \\
+Higher $\rho$ indicates better consistency; lower RV indicates better stability. \\
+This analysis uses Pinterest dataset with VAE model across 4 performance levels (HR@10: 0.0298, 0.0517, 0.0671, 0.0846) with 300 test users.
+\end{flushleft}
+\end{table}
+
+\end{document}

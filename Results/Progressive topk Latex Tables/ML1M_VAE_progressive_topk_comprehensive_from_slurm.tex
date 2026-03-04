@@ -1,0 +1,73 @@
+\documentclass{article}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{rotating}
+\usepackage{geometry}
+\usepackage[normalem]{ulem}
+\geometry{landscape, margin=0.3in}
+
+\begin{document}
+
+\begin{table}[htbp]
+\centering
+\caption{Comprehensive Progressive Top-K Aggregation Analysis for ML1M Dataset with VAE Model}
+\label{tab:ml1m_vae_progressive_topk_comprehensive}
+\scriptsize
+\begin{tabular}{@{}llrrr|rrr|rrr|rrr|rrr@{}}
+\toprule
+\multirow{2}{*}{\textbf{Metric}} & \multirow{2}{*}{\textbf{Aggregation}} & \multicolumn{3}{c|}{\textbf{Top-1 Only}} & \multicolumn{3}{c|}{\textbf{Top-1-to-2}} & \multicolumn{3}{c|}{\textbf{Top-1-to-3}} & \multicolumn{3}{c|}{\textbf{Top-1-to-4}} & \multicolumn{3}{c}{\textbf{Top-1-to-5}} \\
+\cmidrule(lr){3-5} \cmidrule(lr){6-8} \cmidrule(lr){9-11} \cmidrule(lr){12-14} \cmidrule(lr){15-17}
+& & $\rho$ & RV & SI & $\rho$ & RV & SI & $\rho$ & RV & SI & $\rho$ & RV & SI & $\rho$ & RV & SI \\
+\midrule
+
+\multirow{4}{*}{\textbf{POS@1}} 
+& Baseline & 0.867 & 0.292 & 0.389 & & & & & & & & & & & & \\
+& Mean & & & & 0.733 & 0.583 & 0.278 & 0.314 & 1.500 & 0.333 & 0.305 & 1.521 & 0.278 & 0.162 & 1.833 & 0.278 \\
+& Weighted Linear & & & & \uline{0.800} & \uline{0.438} & 0.278 & \uline{0.362} & \uline{1.396} & \uline{0.222} & 0.362 & 1.396 & 0.222 & \uline{0.276} & \uline{1.583} & 0.278 \\
+& Weighted Exp & & & & 0.810 & 0.417 & 0.278 & 0.314 & 1.500 & 0.222 & 0.314 & 1.500 & 0.222 & 0.200 & 1.750 & \uline{0.056} \\
+\midrule
+
+\multirow{4}{*}{\textbf{POS@5}} 
+& Baseline & \textbf{0.914} & \textbf{0.188} & 0.444 & & & & & & & & & & & & \\
+& Mean & & & & 0.743 & 0.562 & \textbf{0.667} & 0.619 & 0.833 & 0.444 & 0.590 & 0.896 & 0.278 & 0.838 & 0.354 & \uline{0.500} \\
+& Weighted Linear & & & & \uline{0.838} & \uline{0.354} & \textbf{0.667} & \uline{0.781} & \uline{0.479} & \uline{0.500} & 0.781 & 0.479 & 0.500 & \uline{0.829} & \uline{0.375} & \textbf{0.556} \\
+& Weighted Exp & & & & 0.838 & 0.354 & \textbf{0.667} & 0.781 & 0.479 & 0.500 & 0.781 & 0.479 & 0.500 & 0.829 & 0.375 & \textbf{0.556} \\
+\midrule
+
+\multirow{4}{*}{\textbf{POS@10}} 
+& Baseline & 0.571 & 0.938 & 0.333 & & & & & & & & & & & & \\
+& Mean & & & & 0.676 & 0.708 & 0.389 & 0.448 & 1.208 & 0.333 & 0.286 & 1.562 & \uline{0.444} & 0.305 & 1.521 & 0.167 \\
+& Weighted Linear & & & & \textbf{0.762} & \textbf{0.521} & \textbf{0.500} & 0.552 & 0.979 & 0.333 & \uline{0.610} & \uline{0.854} & 0.389 & 0.552 & 0.979 & 0.333 \\
+& Weighted Exp & & & & 0.676 & 0.708 & 0.333 & \uline{0.619} & \uline{0.833} & 0.333 & 0.610 & 0.854 & 0.389 & \uline{0.514} & \uline{1.062} & 0.333 \\
+\midrule
+
+\multirow{4}{*}{\textbf{POS@20}} 
+& Baseline & -0.238 & 2.708 & 0.167 & & & & & & & & & & & & \\
+& Mean & & & & 0.610 & 0.854 & \textbf{0.667} & 0.457 & 1.188 & \uline{0.500} & 0.467 & 1.167 & 0.278 & 0.419 & 1.271 & \textbf{0.556} \\
+& Weighted Linear & & & & \uline{0.686} & \uline{0.688} & \uline{0.611} & 0.448 & 1.208 & 0.389 & \uline{0.486} & \uline{1.125} & \uline{0.444} & \uline{0.448} & \uline{1.208} & 0.333 \\
+& Weighted Exp & & & & 0.686 & 0.688 & 0.611 & 0.448 & 1.208 & 0.389 & 0.486 & 1.125 & 0.444 & 0.429 & 1.250 & 0.444 \\
+\midrule
+
+\multirow{4}{*}{\textbf{NDCG}} 
+& Baseline & 0.810 & 0.417 & 0.278 & & & & & & & & & & & & \\
+& Mean & & & & 0.705 & 0.646 & \textbf{0.556} & 0.743 & 0.562 & \textbf{0.500} & \uline{0.771} & \uline{0.500} & \textbf{0.556} & 0.686 & 0.688 & 0.389 \\
+& Weighted Linear & & & & 0.810 & 0.417 & 0.278 & \textbf{0.838} & \textbf{0.354} & \textbf{0.500} & \textbf{0.838} & \textbf{0.354} & \textbf{0.500} & \textbf{0.838} & \textbf{0.354} & \textbf{0.500} \\
+& Weighted Exp & & & & 0.810 & 0.417 & 0.278 & 0.838 & 0.354 & 0.500 & 0.838 & 0.354 & 0.500 & 0.838 & 0.354 & 0.500 \\
+\midrule
+
+\multirow{4}{*}{\textbf{DEL}} 
+& Baseline & 0.829 & 0.375 & 0.778 & & & & & & & & & & & & \\
+& Mean & & & & \textbf{0.914} & \textbf{0.188} & \uline{0.833} & \textbf{1.000} & \textbf{0.000} & \textbf{1.000} & \textbf{1.000} & \textbf{0.000} & \textbf{1.000} & \textbf{1.000} & \textbf{0.000} & \textbf{1.000} \\
+& Weighted Linear & & & & 0.829 & 0.375 & 0.778 & 0.914 & 0.188 & 0.833 & \uline{0.971} & \uline{0.062} & 0.889 & 1.000 & 0.000 & 1.000 \\
+& Weighted Exp & & & & 0.914 & 0.188 & 0.833 & \uline{0.971} & \uline{0.062} & 0.889 & 1.000 & 0.000 & 1.000 & 1.000 & 0.000 & 1.000 \\
+
+\bottomrule
+\end{tabular}
+\begin{flushleft}
+\textbf{Note:} $\rho$ = Spearman correlation, RV = Rank Variance, SI = Stability Index. \\
+\textbf{Best values are in bold}, \uline{second-best values are underlined}. Baseline represents Top-1 only performance. \\
+Higher $\rho$ and SI indicate better consistency; lower RV indicates better stability.
+\end{flushleft}
+\end{table}
+
+\end{document}
